@@ -49,14 +49,6 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => true,
-//            'transport' => [
-//                'class' => 'Swift_SmtpTransport',
-//                'host' => 'smtp.gmail.com',
-//                'username' => 'mfsg.cms@gmail.com',
-//                'password' => '1QAZXSW2',
-//                'port' => '587',
-//                'encryption' => 'tls',
-//            ],
         ],
         'db' => $db,
         'urlManager' => [

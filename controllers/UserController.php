@@ -138,7 +138,7 @@ class UserController extends Controller {
             Yii::$app->mailer->compose()
                 ->setFrom(array(Yii::$app->params['adminEmail'] => Yii::$app->params['adminName']))
                 ->setTo($model->user_email)
-                ->setSubject(Yii::t('app', 'user_actvate_account').Yii::$app->params['pageTitle'])
+                ->setSubject(Yii::t('app', 'user_actvate_account').' '.Yii::$app->params['pageTitle'])
                 ->setTextBody(
                     Yii::t('app', 'user_actvate_account_body', [
                             'page_title' => Yii::$app->params['pageTitle'],
