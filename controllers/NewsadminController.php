@@ -50,7 +50,7 @@ class NewsadminController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Newsadmin::find(),
         ]);
-        Yii::info($dataProvider);
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
