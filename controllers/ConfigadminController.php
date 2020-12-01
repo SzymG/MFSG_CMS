@@ -41,7 +41,9 @@ class ConfigadminController extends Controller
             Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_configuration'));
             $model->SaveUserData();
             $ConfigUpdated = true;
-            // TODO tutaj nie powinno być returna?
+
+            return $this->redirect(['/admin']);
+
 
         }
         else

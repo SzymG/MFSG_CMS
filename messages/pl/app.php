@@ -71,6 +71,11 @@ return [
     'a_users_update_header' => 'Edycja użytkownika',
     'a_users_main_header' => 'Użytkownicy',
     'a_users_create_header' => 'Nowy użytkownik',
+    'a_edit_text_page_header' => 'Edytuj',
+    'a_delete_text_page_button' => 'Usuń',
+    'a_update_user_button' => 'Zapisz',
+    '' => '',
+    '' => '',
     '' => '',
     // TODO dodać resztę tłumaczeń
  ];

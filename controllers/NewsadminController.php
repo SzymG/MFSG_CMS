@@ -45,6 +45,7 @@ class NewsadminController extends Controller
 
     public function actionIndex()
     {
+
         Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_news'));
 
         $dataProvider = new ActiveDataProvider([
