@@ -88,6 +88,9 @@ class UseradminController extends Controller
     {
         $model = $this->findModel($id);
         $model->scenario = 'edit';
+        
+        if ($model->user_root != 'y')
+            $model->user_root = 'n';
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {

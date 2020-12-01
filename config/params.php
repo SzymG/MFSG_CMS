@@ -7,5 +7,5 @@ return [
     'adminName' => 'MFSG Admin',
     'pageTitle' => 'MFSG CMS',
     'saltPassword' => 'Z{+;r3hWP;',
-    'pageUrl' => 'http://localhost/MFSG_CMS/web/',
+    'pageUrl' => 'http://localhost/MFSG_CMS/web/'
 ];

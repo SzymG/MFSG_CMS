@@ -129,6 +129,7 @@ class UserController extends Controller {
     public function actionRegister()
     {
         $model = new User(['scenario' => User::SCENARIO_REGISTER]);
+        $model->user_root = 'y';
 
         if ($model->load(Yii::$app->request->post()) && $model->validate())
         {

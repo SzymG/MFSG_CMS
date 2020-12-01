@@ -66,6 +66,11 @@ return [
     'event_date' => 'Data',
     'is_only_for_authorized' => 'Tylko dla zalogowanych',
     'a_create_user_button' => 'Zapisz',
+    'a_yes' => 'Tak',
+    'a_no' => 'Nie',
+    'a_users_update_header' => 'Edycja użytkownika',
+    'a_users_main_header' => 'Użytkownicy',
+    'a_users_create_header' => 'Nowy użytkownik',
     '' => '',
     // TODO dodać resztę tłumaczeń
  ];

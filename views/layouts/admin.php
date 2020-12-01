@@ -60,7 +60,7 @@ echo Nav::widget([
     'items' => [
         ['label' => Yii::t('app', 'a_amenu_config'), 'url' => ['/configadmin/index']],
         ['label' => Yii::t('app', 'a_amenu_page'), 'url' => ['/pageadmin/index']],
-        ['label' => Yii::t('app', 'a_amenu_events'), 'url' => ['/.eventadmin/index']],
+        ['label' => Yii::t('app', 'a_amenu_events'), 'url' => ['/eventadmin/index']],
         ['label' => Yii::t('app', 'a_amenu_news'), 'url' => ['/newsadmin/index']],
         ['label' => Yii::t('app', 'a_amenu_users'), 'items' =>
             [
