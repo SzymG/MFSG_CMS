@@ -27,6 +27,7 @@ class PasswordadminController extends Controller
             return $this->redirect(['/login']);
 
         }
+        return parent::beforeAction($action);
     }
 
     public function actionIndex()

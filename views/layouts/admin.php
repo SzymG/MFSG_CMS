@@ -28,7 +28,7 @@ $ConfigPage = Yii::$app->OtherFunctionsComponent->GetConfigData();
     <meta name="keywords" content="<?php echo $ConfigPage['keywords']; ?>" />
     <title><?php echo Yii::t('app', 'a_logo'); ?></title>
 <?php $this->head() ?>
-    <script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-latest.min.js"
+    <script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-3.5.1.min.js"
             type="text/javascript"></script>
     <script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery.selection.js"></script>
     <script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-ui.min.js"></script>
