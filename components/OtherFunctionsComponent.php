@@ -77,12 +77,12 @@ class OtherFunctionsComponent extends Component
         $Items = array();
         $AboutData = array();
         $MainAllPages = Leftmenuadmin::find()
-            ->where(['menu_sub' => 0])
+            ->where(['menu_parent_id' => 0])
             ->asArray()
             ->orderBy('menu_poz')
             ->all();
         $MainSubPages = Leftmenuadmin::find()
-            ->where('menu_sub != 0')
+            ->where('menu_parent_id != 0')
             ->asArray()
             ->orderBy('menu_poz')
             ->all();
@@ -99,7 +99,7 @@ class OtherFunctionsComponent extends Component
             $MainAllPages[$m]['has_submenu'] = false;
 
             for ($sub = 0; $sub < count($MainSubPages); $sub++) {
-                if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
+                if ($MainSubPages[$sub]['menu_parent_id'] == $MainAllPages[$m]['menu_id']) {
                     $MainAllPages[$m]['has_submenu'] = true;
                 }
             }
@@ -108,7 +108,7 @@ class OtherFunctionsComponent extends Component
                 $SubPages = null;
                 $SubPages = array();
                 for ($sub = 0; $sub < count($MainSubPages); $sub++) {
-                    if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
+                    if ($MainSubPages[$sub]['menu_parent_id'] == $MainAllPages[$m]['menu_id']) {
                         if ($MainSubPages[$sub]['is_only_for_authorized'] == 1) {
                             if ($UserLogged) {
                                 $SubPages[] = array('label' => $MainSubPages[$sub]['menu_title'], 'url' => $this ->MakeUrl($AboutData, $MainSubPages[$sub]['menu_what'], $MainSubPages[$sub]['menu_content_id'], $MainSubPages[$sub]['menu_extra']));

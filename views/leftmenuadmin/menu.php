@@ -72,12 +72,12 @@ style="width: 90px;">';
     $HowManyElementsSub = count($MainSubPages);
     $IsSubOdThisMenu = 0;
     for ($sub = 0; $sub < count($MainSubPages); $sub++) {
-        if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
+        if ($MainSubPages[$sub]['menu_parent_id'] == $MainAllPages[$m]['menu_id']) {
             $IsSubOdThisMenu++;
         }
     }
     for ($sub = 0; $sub < count($MainSubPages); $sub++) {
-        if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
+        if ($MainSubPages[$sub]['menu_parent_id'] == $MainAllPages[$m]['menu_id']) {
             if ($MainSubPages[$sub]['is_only_for_authorized'] == 1) {
                 $NeedLogin = Yii::t('app', 'comm_yes');
             } else {
@@ -167,7 +167,7 @@ foreach($MainsTable as $Key=>$Value)
     $ItemSubList[$Key] = $Value;
 }
 
-echo $form->field($model, 'menu_sub')->dropDownList($ItemSubList);
+echo $form->field($model, 'menu_parent_id')->dropDownList($ItemSubList);
 ?>
 <?php
 
