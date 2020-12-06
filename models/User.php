@@ -79,7 +79,7 @@ class User extends Model {
     }
 
     public function ActivateUser($UserId,$UserKey) {
-        $QueryData = Yii::$app->db->createCommand('SELECT user_id,user_key,user_active FROM {{%user}} WHERE user_id = :user_id AND user_active = ""')
+        $QueryData = Yii::$app->db->createCommand('SELECT user_id,user_key,user_active FROM {{%user}} WHERE user_id = :user_id AND user_active = 0')
             ->bindParam(':user_id', $UserId)
             ->queryOne();
 
@@ -92,7 +92,7 @@ class User extends Model {
             $NowDate = date('Y-m-d H:i:s');
             $IpOfUser = $_SERVER['REMOTE_ADDR'];
             Yii::$app->db->createCommand('UPDATE {{%user}} SET
-                user_active = "y",
+                user_active = 1,
                 user_activated = :user_activated,
                 user_activated_ip = :user_activated_ip
                 WHERE
@@ -124,10 +124,13 @@ class User extends Model {
         $userPhone = htmlspecialchars($this->user_phone);
         $userAbout = htmlspecialchars($this->user_about);
 
+        $userActive = 0;
+        $userRoot = 0;
+
         $QueryData = Yii::$app->db->createCommand('INSERT INTO {{%user}}
-        (user_email,user_password,user_key,user_register,user_registered_ip,user_namesurname,user_phone,user_about)
+        (user_email,user_password,user_key,user_register,user_registered_ip,user_namesurname,user_phone,user_about, user_active, user_root)
         values
-        (:user_email,:user_password,:user_key,:user_register,:user_registered_ip,:user_namesurname,:user_phone,:user_about)
+        (:user_email,:user_password,:user_key,:user_register,:user_registered_ip,:user_namesurname,:user_phone,:user_about, :user_active, :user_root)
         ')
             ->bindParam(':user_namesurname', $nameSurname)
             ->bindParam(':user_phone', $userPhone)
@@ -137,6 +140,8 @@ class User extends Model {
             ->bindParam(':user_key', $UserKey)
             ->bindParam(':user_register', $UserRegisterDate)
             ->bindParam(':user_registered_ip', $UserRegisterIp)
+            ->bindParam(':user_active', $userActive)
+            ->bindParam(':user_root', $userRoot)
             ->execute();
 
         $QueryData = Yii::$app->db->createCommand('SELECT user_id,user_key FROM {{%user}} WHERE user_email = :user_email')
@@ -255,7 +260,7 @@ class User extends Model {
 
     public function validateUserRemind($attribute, $params, $validator) {
         $QueryData = Yii::$app->db->createCommand('SELECT user_id FROM {{%user}} WHERE user_email = :user_email
-            AND user_active = "y"')
+            AND user_active = 1')
             ->bindParam(':user_email', $this->user_email)->queryOne();
 
         if($QueryData == false)
@@ -324,7 +329,7 @@ class User extends Model {
         }
         else
         {
-            if($QueryData['user_active'] == 'y')
+            if($QueryData['user_active'] == 1)
             {
                 $Salt = Yii::$app->params['saltPassword'];
                 if(password_verify($this->user_password.$Salt,$QueryData['user_password']))

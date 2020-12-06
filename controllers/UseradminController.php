@@ -15,7 +15,7 @@ class UseradminController extends Controller
     {
         $session = Yii::$app->session;
         if($session['yii_user_id'] != "") {
-            if ($session['yii_user_root'] != "y") {
+            if ($session['yii_user_root'] != 1) {
                 return $this->redirect(['/right']);
             }
         }
@@ -69,7 +69,7 @@ class UseradminController extends Controller
 
         $model->user_register = date('Y-m-d H:i:s');
         $model->user_registered_ip = $_SERVER['REMOTE_ADDR'];
-        $model->user_active = "y";
+        $model->user_active = 1;
         $model->user_activated = date('Y-m-d H:i:s');
         $model->user_activated_ip = $_SERVER['REMOTE_ADDR'];
 
@@ -88,9 +88,6 @@ class UseradminController extends Controller
     {
         $model = $this->findModel($id);
         $model->scenario = 'edit';
-        
-        if ($model->user_root != 'y')
-            $model->user_root = 'n';
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
