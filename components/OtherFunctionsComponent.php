@@ -4,7 +4,6 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
-use yii\base\InvalidConfigException;
 use app\models\Logadmin;
 use app\models\Configadmin;
 use app\models\Leftmenuadmin;
@@ -21,6 +20,7 @@ class OtherFunctionsComponent extends Component
         $logUser->log_message = $Message;
         $logUser->log_time = date('Y-m-d H:i:s');
         $logUser->log_ip= $_SERVER['REMOTE_ADDR'];
+        Yii::info(print_r($logUser, true), 'info');
         $logUser->save();
     }
 

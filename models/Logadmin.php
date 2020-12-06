@@ -12,9 +12,9 @@ class Logadmin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['log_user_id', 'log_what', 'log_time', 'log_ip'], 'required'],
+            [['log_what', 'log_time', 'log_ip'], 'required'],
             [['log_user_id'], 'integer'],
-            [['log_time', 'log_message'], 'safe'],
+            [['log_time', 'log_message', 'log_user_id'], 'safe'],
             [['log_what'], 'string', 'max' => 50],
             [['log_message'], 'string', 'max' => 512],
             [['log_ip'], 'string', 'max' => 15],
