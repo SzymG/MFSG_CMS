@@ -18,21 +18,13 @@ class Error404 extends \yii\db\ActiveRecord
         ];
     }
 
-    public function AddError404($FromPage,$OnPage)
+    public function AddError404()
     {
         $FromPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'null';
         $OnPage = (isset($_SERVER['HTTPS']) ? "https" : "http")."://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $DateError = date("y-m-d H:i:s");
 
-        $QueryData = Yii::$app->db->createCommand('INSERT INTO {{%error404}} (error_page_from, error_page,
-            error_date)
-            values
-            (:error_page_from, :error_page, :error_date)
-            ')
-            ->bindParam(':error_page_from', $FromPage)
-            ->bindParam(':error_page', $OnPage)
-            ->bindParam(':error_date', $DateError)
-            ->execute();
+        $message = Yii::t('app', 'from').': '.$FromPage.', '.Yii::t('app', 'to').': '.$OnPage;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_error404'), $message);
     }
 
     public function attributeLabels()

@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'log_what',
+            'log_message',
             'log_time',
             'log_ip',
         ],

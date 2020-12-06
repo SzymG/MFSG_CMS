@@ -14,8 +14,9 @@ class Logadmin extends \yii\db\ActiveRecord
         return [
             [['log_user_id', 'log_what', 'log_time', 'log_ip'], 'required'],
             [['log_user_id'], 'integer'],
-            [['log_time'], 'safe'],
+            [['log_time', 'log_message'], 'safe'],
             [['log_what'], 'string', 'max' => 50],
+            [['log_message'], 'string', 'max' => 512],
             [['log_ip'], 'string', 'max' => 15],
         ];
     }
@@ -44,6 +45,7 @@ class Logadmin extends \yii\db\ActiveRecord
             'log_id' => Yii::t('app', 'log_id'),
             'log_user_id' => Yii::t('app', 'log_user_id'),
             'log_what' => Yii::t('app', 'log_what'),
+            'log_message' => Yii::t('app', 'log_message'),
             'log_time' => Yii::t('app', 'log_time'),
             'log_ip' => Yii::t('app', 'log_ip'),
         ];
