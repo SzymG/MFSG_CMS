@@ -27,7 +27,7 @@ $form = ActiveForm::begin([
 
 $ItemContentList2['main'] = Yii::t('app', 'a_menu_main');
 $ItemContentList2['none'] = Yii::t('app', 'a_menu_main');
-$ItemContentList2['login'] = Yii::t('app', 'a_menu_login');
+$ItemContentList2['login'] = Yii::t('app', 'a_is_only_for_authorized');
 $ItemContentList2['logout'] = Yii::t('app', 'a_menu_logout');
 $ItemContentList2['changepassword'] = Yii::t('app', 'a_menu_change_password');
 $ItemContentList2['profil'] = Yii::t('app', 'a_menu_profil');
@@ -45,7 +45,7 @@ $TableMakeMenu = array();
 $HowManyElements = count($MainAllPages);
 
 for ($m = 0; $m < count($MainAllPages); $m++) {
-    if ($MainAllPages[$m]['menu_login'] == 'y') {
+    if ($MainAllPages[$m]['is_only_for_authorized'] == 1) {
         $NeedLogin = Yii::t('app', 'comm_yes');
     } else {
         $NeedLogin = Yii::t('app', 'comm_no');
@@ -78,7 +78,7 @@ style="width: 90px;">';
     }
     for ($sub = 0; $sub < count($MainSubPages); $sub++) {
         if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
-            if ($MainSubPages[$sub]['menu_login'] == 'y') {
+            if ($MainSubPages[$sub]['is_only_for_authorized'] == 1) {
                 $NeedLogin = Yii::t('app', 'comm_yes');
             } else {
                 $NeedLogin = Yii::t('app', 'comm_no');;
@@ -136,7 +136,7 @@ if($WasAdded)
 <?php
 
 $ItemContentList['main'] = Yii::t('app', 'a_menu_main');
-$ItemContentList['login'] = Yii::t('app', 'a_menu_login');
+$ItemContentList['login'] = Yii::t('app', 'a_is_only_for_authorized');
 $ItemContentList['logout'] = Yii::t('app', 'a_menu_logout');
 $ItemContentList['changepassword'] = Yii::t('app', 'a_menu_change_password');
 $ItemContentList['profil'] = Yii::t('app', 'a_menu_profil');
@@ -173,7 +173,7 @@ echo $form->field($model, 'menu_sub')->dropDownList($ItemSubList);
 
 $ItemLoginList['n'] = Yii::t('app', 'a_no');
 $ItemLoginList['y'] = Yii::t('app', 'a_yes');
-echo $form->field($model, 'menu_login')->dropDownList($ItemLoginList);
+echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList);
 ?>
 
 
@@ -200,7 +200,7 @@ echo $form->field($model, 'menu_login')->dropDownList($ItemLoginList);
             }
             else if($(this).val() == "login")
             {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_login'); ?>": "login"};
+                var newOptions = {"<?php echo Yii::t('app', 'a_is_only_for_authorized'); ?>": "login"};
                 var $el = $("#leftmenuadmin-menu_content_id");
                 $el.empty();
                 $.each(newOptions, function(key,value)

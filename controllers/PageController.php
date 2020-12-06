@@ -8,7 +8,7 @@ use app\models\Page;
 use yii\data\Pagination;
 
 class PageController extends Controller {
-    // TODO wyrzucanie ze strony, jeśli jest przeznaczona tylko dla zalogownych
+    // TODO wyrzucanie ze strony, jeśli jest przeznaczona tylko dla zalogownych  albo jeśli jest OFF
     public function actionIndex() {
         $model = new Page();
         $CountAll = $model->CountAll();

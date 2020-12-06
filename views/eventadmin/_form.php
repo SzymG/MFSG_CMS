@@ -11,13 +11,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'event_title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'event_text')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'event_author')->textInput(['maxlength' => true]) ?>
+    <!-- TODO to zakryć i uzupełniać uuromatycznie-->
+    <?= $form->field($model, 'event_date')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'event_date_start')->textInput() ?>
     <?= $form->field($model, 'event_date_end')->textInput() ?>
     <?= $form->field($model, 'event_url')->textInput(['maxlength' => true]) ?>
 <!--    TODO tutaj zmienić na upload zdjęć -->
     <?= $form->field($model, 'event_photo_url')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'is_only_for_authorized')->checkbox() ?>
+    <?= $form->field($model, 'is_active')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'a_event_add') : Yii::t('app',

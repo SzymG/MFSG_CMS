@@ -7,7 +7,7 @@ use yii\data\Pagination;
 
 class EventController extends Controller
 {
-    // TODO wyrzucanie ze strony, jeśli jest przeznaczona tylko dla zalogownych
+    // TODO wyrzucanie ze strony, jeśli jest przeznaczona tylko dla zalogownych albo jeśli jest OFF
     public function actionIndex()
     {
         $model = new Event();

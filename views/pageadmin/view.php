@@ -36,6 +36,7 @@ if($model->page_id != 1)
             'page_text:ntext',
             'page_url',
             'is_only_for_authorized',
+            'is_active',
         ],
     ]) ?>
 </div>

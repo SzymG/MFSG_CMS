@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'page_text')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'page_url')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'is_only_for_authorized')->checkbox() ?>
+    <?= $form->field($model, 'is_active')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'a_create_user_button') : Yii::t('app',

@@ -59,7 +59,8 @@ class NewsadminController extends Controller
 
     public function actionView($id)
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_entry_news'));
+        $idText = 'ID: '.$id;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_entry_news'), $idText);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -72,7 +73,8 @@ class NewsadminController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_add'));
+            $idText = 'ID: '.$model->news_id;
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_add'), $idText);
             return $this->redirect(['view', 'id' => $model->news_id]);
         } else {
             return $this->render('create', [
@@ -88,7 +90,8 @@ class NewsadminController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_updated'));
+            $idText = 'ID: '.$id;
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_updated'), $idText);
             return $this->redirect(['view', 'id' => $model->news_id]);
         } else {
             return $this->render('update', [
@@ -100,7 +103,8 @@ class NewsadminController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_delete'));
+        $idText = 'ID: '.$id;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_delete'), $idText);
 
         return $this->redirect(['index']);
     }

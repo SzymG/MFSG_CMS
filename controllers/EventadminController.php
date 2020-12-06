@@ -56,7 +56,8 @@ class EventadminController extends Controller
 
     public function actionView($id)
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_event'));
+        $idText = 'ID: '.$id;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_event'), $idText);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -68,7 +69,8 @@ class EventadminController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_event'));
+            $idText = 'ID: '.$model->event_id;
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_event'), $idText);
             return $this->redirect(['view', 'id' => $model->event_id]);
         } else {
             return $this->render('create', [
@@ -83,7 +85,8 @@ class EventadminController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_event'));
+            $idText = 'ID: '.$id;
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_event'), $idText);
             return $this->redirect(['view', 'id' => $model->event_id]);
         } else {
             return $this->render('update', [
@@ -95,8 +98,9 @@ class EventadminController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $idText = 'ID: '.$id;
 
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_deleted_event'));
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_deleted_event'), $idText);
 
         return $this->redirect(['index']);
     }

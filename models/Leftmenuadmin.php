@@ -9,7 +9,7 @@ class Leftmenuadmin extends \yii\db\ActiveRecord
     public $menu_title;
     public $menu_poz;
     public $menu_sub;
-    public $menu_login;
+    public $is_only_for_authorized;
     public $menu_what;
     public $menu_content_id;
     public $menu_extra;
@@ -21,7 +21,7 @@ class Leftmenuadmin extends \yii\db\ActiveRecord
 
     public function rules() {
         return [
-            [['menu_title', 'menu_sub', 'menu_login', 'menu_what', 'menu_content_id'], 'required'],
+            [['menu_title', 'menu_sub', 'is_only_for_authorized', 'menu_what', 'menu_content_id'], 'required'],
         ];
     }
 
@@ -30,14 +30,14 @@ class Leftmenuadmin extends \yii\db\ActiveRecord
         if($this->menu_poz == ""){$this->menu_poz = 0;}
         if($this->menu_sub == ""){$this->menu_sub = 0;}
         $QueryData = Yii::$app->db->createCommand('INSERT INTO {{%menu}} (menu_title, menu_poz, menu_sub,
-menu_login, menu_what, menu_content_id, menu_extra)
+is_only_for_authorized, menu_what, menu_content_id, menu_extra)
 values
-(:menu_title,:menu_poz, :menu_sub, :menu_login, :menu_what, :menu_content_id, :menu_extra)
+(:menu_title,:menu_poz, :menu_sub, :is_only_for_authorized, :menu_what, :menu_content_id, :menu_extra)
 ')
             ->bindParam(':menu_title', $this->menu_title)
             ->bindParam(':menu_poz', $this->menu_poz)
             ->bindParam(':menu_sub', $this->menu_sub)
-            ->bindParam(':menu_login', $this->menu_login)
+            ->bindParam(':is_only_for_authorized', $this->is_only_for_authorized)
             ->bindParam(':menu_what', $this->menu_what)
             ->bindParam(':menu_content_id', $this->menu_content_id)
             ->bindParam(':menu_extra', $this->menu_extra)
@@ -73,7 +73,7 @@ values
             'menu_content_id' => Yii::t('app', 'menu_content_id'),
             'menu_poz' => Yii::t('app', 'menu_poz'),
             'menu_sub' => Yii::t('app', 'menu_sub'),
-            'menu_login' => Yii::t('app', 'menu_login'),
+            'is_only_for_authorized' => Yii::t('app', 'is_only_for_authorized'),
             'menu_extra' => Yii::t('app', 'menu_extra')
         ];
     }

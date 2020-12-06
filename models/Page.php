@@ -8,6 +8,7 @@ class Page extends Model {
     public $page_title;
     public $page_text;
     public $is_only_for_authorized;
+    public $is_active;
     public $page_url;
 
     public static function tableName()
@@ -51,6 +52,7 @@ class Page extends Model {
             $this->page_title = $QueryData['page_title'];
             $this->page_text = $QueryData['page_text'];
             $this->is_only_for_authorized = $QueryData['is_only_for_authorized'];
+            $this->is_active = $QueryData['is_active'];
             $this->page_url = $QueryData['page_url'];
         }
 
@@ -72,6 +74,7 @@ class Page extends Model {
             $this->page_title = $QueryData['page_title'];
             $this->page_text = $QueryData['page_text'];
             $this->is_only_for_authorized = $QueryData['is_only_for_authorized'];
+            $this->is_active = $QueryData['is_active'];
             $this->page_url = $QueryData['page_url'];
         }
 
@@ -85,6 +88,7 @@ class Page extends Model {
             'page_title' => Yii::t('app', 'page_title'),
             'page_text' => Yii::t('app', 'page_text'),
             'is_only_for_authorized' => Yii::t('app', 'is_only_for_authorized'),
+            'is_active' => Yii::t('app', 'is_active'),
             'page_url' => Yii::t('app', 'page_url'),
         ];
     }
