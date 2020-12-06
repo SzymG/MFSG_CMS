@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'event_date_end',
             'event_url',
             'is_only_for_authorized',
+            'is_active',
         ],
     ]) ?>
 </div>

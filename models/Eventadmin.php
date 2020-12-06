@@ -15,12 +15,13 @@ class Eventadmin extends \yii\db\ActiveRecord
         return [
             [['event_title', 'event_text', 'event_author', 'event_date_start', 'event_url'], 'required'],
             [['event_text'], 'string'],
-            [['event_date_start', 'event_date_end', 'is_only_for_authorized'], 'safe'],
+            [['event_date_start', 'event_date_end', 'is_only_for_authorized', 'is_active'], 'safe'],
             [['event_title'], 'string', 'max' => 150],
             [['event_author'], 'string', 'max' => 55],
             [['event_photo_url'], 'string', 'max' => 65],
             [['event_url'], 'string', 'max' => 65],
             [['is_only_for_authorized'], 'boolean'],
+            [['is_active'], 'boolean'],
         ];
     }
 
@@ -37,6 +38,7 @@ class Eventadmin extends \yii\db\ActiveRecord
             'event_photo_url' => Yii::t('app', 'event_photo_url'),
             'event_url' => Yii::t('app', 'event_url'),
             'is_only_for_authorized' => Yii::t('app', 'is_only_for_authorized'),
+            'is_active' => Yii::t('app', 'is_active'),
         ];
     }
 }

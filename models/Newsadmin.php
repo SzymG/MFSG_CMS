@@ -19,6 +19,7 @@ class Newsadmin extends \yii\db\ActiveRecord
             [['news_photo_url'], 'string', 'max' => 65],
             [['news_url'], 'string', 'max' => 65],
             [['is_only_for_authorized'], 'boolean'],
+            [['is_active'], 'boolean'],
         ];
     }
 
@@ -31,6 +32,7 @@ class Newsadmin extends \yii\db\ActiveRecord
             'news_date' => Yii::t('app', 'news_date'),
             'news_url' => Yii::t('app', 'news_url'),
             'is_only_for_authorized' => Yii::t('app', 'is_only_for_authorized'),
+            'is_active' => Yii::t('app', 'is_active'),
             'news_photo_url' => Yii::t('app', 'news_photo_url'),
         ];
     }

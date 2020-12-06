@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
 <!--    TODO tutaj zmienić na upload zdjęć -->
     <?= $form->field($model, 'event_photo_url')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'is_only_for_authorized')->checkbox() ?>
+    <?= $form->field($model, 'is_active')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'a_event_add') : Yii::t('app',

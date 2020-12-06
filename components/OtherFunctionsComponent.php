@@ -109,7 +109,7 @@ class OtherFunctionsComponent extends Component
                 $SubPages = array();
                 for ($sub = 0; $sub < count($MainSubPages); $sub++) {
                     if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
-                        if ($MainSubPages[$sub]['is_only_for_authorized'] == 'y') {
+                        if ($MainSubPages[$sub]['is_only_for_authorized'] == 1) {
                             if ($UserLogged) {
                                 $SubPages[] = array('label' => $MainSubPages[$sub]['menu_title'], 'url' => $this ->MakeUrl($AboutData, $MainSubPages[$sub]['menu_what'], $MainSubPages[$sub]['menu_content_id'], $MainSubPages[$sub]['menu_extra']));
 }
@@ -121,7 +121,7 @@ class OtherFunctionsComponent extends Component
                 if (count($SubPages) > 0) {
                     $ItemsElement = array('label' => $MainAllPages[$m]['menu_title'], 'items' => $SubPages);
                 } else {
-                    if ($MainAllPages[$m]['is_only_for_authorized'] == 'y') {
+                    if ($MainAllPages[$m]['is_only_for_authorized'] == 1) {
                         if ($UserLogged) {
                             $ItemsElement = array('label' => $MainAllPages[$m]['menu_title'], 'url' => $this ->MakeUrl($AboutData, $MainAllPages[$m]['menu_what'], $MainAllPages[$m]['menu_content_id'], $MainAllPages[$m]['menu_extra']));
 array_push($Items, $ItemsElement);

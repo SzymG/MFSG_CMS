@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'news_url',
             'news_photo_url',
             'is_only_for_authorized',
+            'is_active',
         ],
     ]) ?>
 </div>

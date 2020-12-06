@@ -11,6 +11,7 @@ class News extends Model
     public $news_date;
     public $news_url;
     public $is_only_for_authorized;
+    public $is_active;
     public $news_photo_url;
 
     public static function tableName()
@@ -61,6 +62,7 @@ class News extends Model
             $this->news_date = $QueryData['news_date'];
             $this->news_url = $QueryData['news_url'];
             $this->is_only_for_authorized = $QueryData['is_only_for_authorized'];
+            $this->is_active = $QueryData['is_active'];
             $this->news_photo_url = $QueryData['news_photo_url'];
         }
 
@@ -77,6 +79,7 @@ class News extends Model
             'news_date' => Yii::t('app', 'news_date'),
             'news_url' => Yii::t('app', 'news_url'),
             'is_only_for_authorized' => Yii::t('app', 'is_only_for_authorized'),
+            'is_active' => Yii::t('app', 'is_active'),
             'news_photo_url' => Yii::t('app', 'news_photo_url'),
         ];
     }

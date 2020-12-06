@@ -13,6 +13,7 @@ class Event extends Model
     public $event_date_end;
     public $event_photo_url;
     public $is_only_for_authorized;
+    public $is_active;
     public $event_url;
 
     public static function tableName()
@@ -67,6 +68,7 @@ class Event extends Model
             $this->event_date_end = $QueryData['event_date_end'];
             $this->event_photo_url = $QueryData['event_photo_url'];
             $this->is_only_for_authorized = $QueryData['is_only_for_authorized'];
+            $this->is_active = $QueryData['is_active'];
             $this->event_url = $QueryData['event_url'];
         }
 
@@ -85,6 +87,7 @@ class Event extends Model
             'event_photo_url' => Yii::t('app', 'event_photo_url'),
             'event_url' => Yii::t('app', 'event_url'),
             'is_only_for_authorized' => Yii::t('app', 'is_only_for_authorized'),
+            'is_active' => Yii::t('app', 'is_active'),
         ];
     }
 }

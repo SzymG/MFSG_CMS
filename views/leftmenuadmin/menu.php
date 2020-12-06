@@ -45,7 +45,7 @@ $TableMakeMenu = array();
 $HowManyElements = count($MainAllPages);
 
 for ($m = 0; $m < count($MainAllPages); $m++) {
-    if ($MainAllPages[$m]['is_only_for_authorized'] == 'y') {
+    if ($MainAllPages[$m]['is_only_for_authorized'] == 1) {
         $NeedLogin = Yii::t('app', 'comm_yes');
     } else {
         $NeedLogin = Yii::t('app', 'comm_no');
@@ -78,7 +78,7 @@ style="width: 90px;">';
     }
     for ($sub = 0; $sub < count($MainSubPages); $sub++) {
         if ($MainSubPages[$sub]['menu_sub'] == $MainAllPages[$m]['menu_id']) {
-            if ($MainSubPages[$sub]['is_only_for_authorized'] == 'y') {
+            if ($MainSubPages[$sub]['is_only_for_authorized'] == 1) {
                 $NeedLogin = Yii::t('app', 'comm_yes');
             } else {
                 $NeedLogin = Yii::t('app', 'comm_no');;

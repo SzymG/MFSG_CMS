@@ -65,6 +65,7 @@ return [
     'event_author' => 'Autor',
     'event_date' => 'Data',
     'is_only_for_authorized' => 'Tylko dla zalogowanych',
+    'is_active' => 'Aktywne',
     'a_create_user_button' => 'Zapisz',
     'a_yes' => 'Tak',
     'a_no' => 'Nie',
