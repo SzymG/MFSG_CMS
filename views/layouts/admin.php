@@ -70,7 +70,6 @@ echo Nav::widget([
             ]
         ],
         ['label' => Yii::t('app', 'a_amenu_left_menu'), 'url' => ['/leftmenuadmin/index']],
-        ['label' => Yii::t('app', 'a_error404_header'), 'url' => ['/error404admin/index']],
         ['label' => Yii::t('app', 'a_amenu_logout'), 'url' => ['/logout']],
     ],
 ]);
