@@ -16,6 +16,10 @@ class OtherFunctionsComponent extends Component
     {
         $session = Yii::$app->session;
         $logUser = new Logadmin();
+        $logUser->log_user_id = $session['yii_user_id'];
+        $logUser->log_what = $Message;
+        $logUser->log_time = date('Y-m-d H:i:s');
+        $logUser->log_ip= $_SERVER['REMOTE_ADDR'];
         $logUser->save();
     }
 
