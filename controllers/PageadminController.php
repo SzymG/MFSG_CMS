@@ -52,7 +52,8 @@ class PageadminController extends Controller
 
     public function actionView($id)
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'));
+        $idText = 'ID: '.$id;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), $idText);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -64,7 +65,8 @@ class PageadminController extends Controller
         $model = new Pageadmin();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_page'));
+            $idText = 'ID: '.$model->page_id;
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_page'), $idText);
             return $this->redirect(['view', 'id' => $model->page_id]);
         } else {
             return $this->render('create', [
@@ -77,7 +79,8 @@ class PageadminController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_page'));
+            $idText = 'ID: '.$model->page_id;
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_page'), $idText);
             return $this->redirect(['view', 'id' => $model->page_id]);
         } else {
             return $this->render('update', [
@@ -89,7 +92,8 @@ class PageadminController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_deleted_page'));
+        $idText = 'ID: '.$id;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_deleted_page'), $idText);
         return $this->redirect(['index']);
     }
 

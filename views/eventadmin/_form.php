@@ -11,7 +11,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'event_title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'event_text')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'event_author')->textInput(['maxlength' => true]) ?>
+    <!-- TODO to zakryć i uzupełniać uuromatycznie-->
+    <?= $form->field($model, 'event_date')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'event_date_start')->textInput() ?>
     <?= $form->field($model, 'event_date_end')->textInput() ?>
     <?= $form->field($model, 'event_url')->textInput(['maxlength' => true]) ?>

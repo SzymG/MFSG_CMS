@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'event_id',
             'event_title',
             'event_text:ntext',
-            'event_author',
+            'event_date',
             'event_date_start',
             'event_date_end',
             'event_url',

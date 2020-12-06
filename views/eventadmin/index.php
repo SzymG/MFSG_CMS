@@ -20,8 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' =>'yii\grid\SerialColumn'],
             'event_id',
             'event_title',
-            'event_author',
             'event_date',
+            'event_date_start',
+            'event_date_end',
             ['class' =>'yii\grid\ActionColumn', 'template'=>'{view} {update} {delete}'],
         ],
     ]); ?>
