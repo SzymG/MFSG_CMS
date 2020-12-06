@@ -91,7 +91,7 @@ class LeftmenuadminController extends Controller
             $model->menu_title = "";
             $model->menu_poz = "";
             $model->menu_sub = "";
-            $model->menu_login = "";
+            $model->is_only_for_authorized = "";
             $model->menu_what = "";
             $model->menu_content_id = "";
             $model->menu_extra = "";
