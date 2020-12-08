@@ -65,7 +65,6 @@ echo Nav::widget([
         ['label' => Yii::t('app', 'a_amenu_users'), 'items' =>
             [
                 ['label' => Yii::t('app', 'a_amenu_users'), 'url' => ['/useradmin/index']],
-                ['label' => Yii::t('app', 'a_amenu_password_change'), 'url' => ['/passwordadmin/index']],
                 ['label' => Yii::t('app', 'a_amenu_logs'), 'url' => ['/logadmin/index']],
             ]
         ],
