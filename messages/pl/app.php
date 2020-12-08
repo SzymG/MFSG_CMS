@@ -114,7 +114,13 @@ return [
     'no_right_comm' => 'Nie posiadasz uprawnień do wyświetlenia tej strony.',
     'a_logo' => 'Panel Administratora',
     'user_error404' => '404 Page Not Found',
-    'user_error404_com' => 'Ups... coś poszło źle'
+    'user_error404_com' => 'Ups... coś poszło źle',
+    'user_remind_pass_title' => 'Przypomnienie hasła ',
+    'user_new_password' => 'Nowe hasło ',
+    'a_users_delete_header' => 'Usuń użytkownika',
+    'a_delete_shure' => 'Czy na pewno chcesz usunąć?',
+    'user_registered_ip' => 'IP rejestracji',
+    'user_register' => 'Data rejestracji',
     // TODO dodać resztę tłumaczeń
  ];
 

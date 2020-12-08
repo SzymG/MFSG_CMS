@@ -183,41 +183,35 @@ class User extends Model {
     }
 
     public function SetNewPassword($UserId,$UserHash1,$UserHash2) {
-        $QueryDataIs = Yii::$app->db->createCommand('SELECT * FROM {{%password}} WHERE
-            password_user_id = :password_user_id
+        $QueryDataIs = Yii::$app->db->createCommand('SELECT * FROM {{%user}} WHERE
+            user_id = :user_id
             AND
-            password_hash1 = :password_hash1
+            user_password_hash1 = :user_password_hash1
             AND
-            password_hash2 = :password_hash2
-            AND
-            password_used = ""
-            ORDER BY
-            password_id DESC
+            user_password_hash2 = :user_password_hash2
             ')
-            ->bindParam(':password_user_id', $UserId)
-            ->bindParam(':password_hash1', $UserHash1)
-            ->bindParam(':password_hash2', $UserHash2)
+            ->bindParam(':user_id', $UserId)
+            ->bindParam(':user_password_hash1', $UserHash1)
+            ->bindParam(':user_password_hash2', $UserHash2)
             ->queryOne();
+
+        // Sprawdzamy czy użytkownik istnieje
 
         if($QueryDataIs != false) {
             $DateAndTimePlus = date('Y-m-d H:i:s', strtotime('-2 hours',time()));
-            $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%password}} WHERE
-                password_user_id = :password_user_id
+            $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%user}} WHERE
+                user_id = :user_id
                 AND
-                password_hash1 = :password_hash1
+                user_password_hash1 = :user_password_hash1
                 AND
-                password_hash2 = :password_hash2
+                user_password_hash2 = :user_password_hash2
                 AND
-                password_time > :password_time
-                AND
-                password_used = ""
-                ORDER BY
-                password_id DESC
+                user_password_time > :user_password_time
                 ')
-                ->bindParam(':password_user_id', $UserId)
-                ->bindParam(':password_hash1', $UserHash1)
-                ->bindParam(':password_hash2', $UserHash2)
-                ->bindParam(':password_time', $DateAndTimePlus)
+                ->bindParam(':user_id', $UserId)
+                ->bindParam(':user_password_hash1', $UserHash1)
+                ->bindParam(':user_password_hash2', $UserHash2)
+                ->bindParam(':user_password_time', $DateAndTimePlus)
                 ->queryOne();
 
             $ReturnedValue = false;
@@ -237,15 +231,6 @@ class User extends Model {
                     :user_id')
                     ->bindParam(':user_password', $ReadyPassword)
                     ->bindParam(':user_id', $UserId)->execute();
-
-                $PasswordUserTime = date('Y-m-d H:i:s');
-                $UserPasswordIp = $_SERVER['REMOTE_ADDR'];
-
-                Yii::$app->db->createCommand('UPDATE {{%password}} SET password_ip = :password_ip, password_time_used =
-                    :password_time_used, password_used = "y" WHERE password_id = :password_id')
-                    ->bindParam(':password_ip', $UserPasswordIp)
-                    ->bindParam(':password_time_used', $PasswordUserTime)
-                    ->bindParam(':password_id', $QueryData['password_id'])->execute();
 
                 $ReturnedValue = true;
             }
@@ -274,13 +259,14 @@ class User extends Model {
             $Hash1 = strtolower(Yii::$app->getSecurity()->generateRandomString(20));
             $Hash2 = strtolower(Yii::$app->getSecurity()->generateRandomString(20));
 
-            Yii::$app->db->createCommand('INSERT INTO {{%password}} (password_user_id, password_hash1, password_hash2,
-                password_time) VALUES (:password_user_id, :password_hash1, :password_hash2, :password_time)')
-                ->bindParam(':password_user_id', $UserId)
-                ->bindParam(':password_hash1', $Hash1)
-                ->bindParam(':password_hash2', $Hash2)
-                ->bindParam(':password_time', $DateTimeSet)
-                ->execute();
+            Yii::$app->db->createCommand('UPDATE {{%user}} SET user_password_hash1 = :user_password_hash1, user_password_hash2 = :user_password_hash2,
+            user_password_time = :user_password_time
+            WHERE
+            user_id = :user_id')
+                ->bindParam(':user_password_hash1', $Hash1)
+                ->bindParam(':user_password_hash2', $Hash2)
+                ->bindParam(':user_password_time', $DateTimeSet)
+                ->bindParam(':user_id', $UserId)->execute();
 
             $this->password_hash1 = $Hash1;
             $this->password_hash2 = $Hash2;

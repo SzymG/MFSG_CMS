@@ -13,11 +13,10 @@ class m201207_182907_relational_database_fixes extends Migration
         $this->addColumn('user', 'user_password_hash1', 'VARCHAR(20) NOT NULL');
         $this->addColumn('user', 'user_password_hash2', 'VARCHAR(20) NOT NULL');
         $this->addColumn('user', 'user_password_time', 'DATETIME NOT NULL');
-        $this->addColumn('user', 'user_password_time_used', 'DATETIME NOT NULL');
+        $this->dropTable('password');
     }
 
     public function safeDown() {
         $this->dropForeignKey('fk_log_user', 'log');
-        $this->dropTable('password');
     }
 }
