@@ -20,7 +20,7 @@ class LeftmenuadminController extends Controller
         $session = Yii::$app->session;
         if($session['yii_user_id'] != "")
         {
-            if($session['yii_user_root'] != "y")
+            if($session['yii_user_root'] != 1)
             {
                 return $this->redirect(['/right']);
             }
@@ -90,7 +90,7 @@ class LeftmenuadminController extends Controller
             $model->menu_id = "";
             $model->menu_title = "";
             $model->menu_poz = "";
-            $model->menu_sub = "";
+            $model->menu_parent_id = "";
             $model->is_only_for_authorized = "";
             $model->menu_what = "";
             $model->menu_content_id = "";
@@ -100,19 +100,19 @@ class LeftmenuadminController extends Controller
         }
 
         $MainAllPages = Leftmenuadmin::find()
-            ->where(['menu_sub' => 0])
+            ->where(['menu_parent_id' => 0])
             ->asArray()
             ->orderBy('menu_poz')
             ->all();
 
         $MainSubPages = Leftmenuadmin::find()
-            ->where('menu_sub != 0')
+            ->where('menu_parent_id != 0')
             ->asArray()
             ->orderBy('menu_poz')
             ->all();
 
         $MainPages = Leftmenuadmin::find()
-            ->where(['menu_sub' => 0])
+            ->where(['menu_parent_id' => 0])
             ->asArray()
             ->orderBy('menu_poz')
             ->all();

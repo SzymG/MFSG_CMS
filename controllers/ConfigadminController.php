@@ -16,7 +16,7 @@ class ConfigadminController extends Controller
         $session = Yii::$app->session;
         if($session['yii_user_id'] != "")
         {
-            if($session['yii_user_root'] != "y")
+            if($session['yii_user_root'] != 1)
             {
                 return $this->redirect(['/right']);
             }

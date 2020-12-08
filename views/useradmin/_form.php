@@ -22,8 +22,8 @@ use yii\widgets\ActiveForm;
 
 
     <?php
-    $ItemToList['y'] = Yii::t('app', 'a_yes');
-    $ItemToList['n'] = Yii::t('app', 'a_no');
+    $ItemToList[1] = Yii::t('app', 'a_yes');
+    $ItemToList[0] = Yii::t('app', 'a_no');
     echo $form->field($model, 'user_root')->dropDownList($ItemToList);
     ?>
 

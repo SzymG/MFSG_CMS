@@ -110,6 +110,11 @@ return [
     'log_error404' => 'Błąd strony 404',
     'from' => 'Z',
     'to' => 'Do',
+    'no_right_header' => 'Brak uprawnień',
+    'no_right_comm' => 'Nie posiadasz uprawnień do wyświetlenia tej strony.',
+    'a_logo' => 'Panel Administratora',
+    'user_error404' => '404 Page Not Found',
+    'user_error404_com' => 'Ups... coś poszło źle'
     // TODO dodać resztę tłumaczeń
  ];
 
