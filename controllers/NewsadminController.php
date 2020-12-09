@@ -11,24 +11,22 @@ use yii\filters\VerbFilter;
 class NewsadminController extends Controller
 {
     public $layout = 'admin';
-
     public function beforeAction($action)
     {
         $session = Yii::$app->session;
-
         if($session['yii_user_id'] != "")
         {
             if($session['yii_user_root'] != 1)
             {
                 return $this->redirect(['/right']);
             }
-            else
-            {
-                return $this->redirect(['/login']);
-            }
         }
-
+        else
+        {
+            return $this->redirect(['/login']);
+        }
         return parent::beforeAction($action);
+
     }
 
     public function behaviors()

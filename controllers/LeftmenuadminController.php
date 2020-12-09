@@ -14,7 +14,6 @@ class LeftmenuadminController extends Controller
 {
     // TODO tutaj mogłem coś namieszać bo zmieniałem article na event blog na news itp
     public $layout = 'admin';
-
     public function beforeAction($action)
     {
         $session = Yii::$app->session;
@@ -24,13 +23,13 @@ class LeftmenuadminController extends Controller
             {
                 return $this->redirect(['/right']);
             }
-            else
-            {
-                return $this->redirect(['/login']);
-            }
         }
-
+        else
+        {
+            return $this->redirect(['/login']);
+        }
         return parent::beforeAction($action);
+
     }
 
     public function actionIndex()
@@ -44,9 +43,11 @@ class LeftmenuadminController extends Controller
         {
             Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'com_set_menu_poz'));
 
-            foreach(Yii::$app->request->post('poz') AS $Key=>$Value)
-            {
-                $model->SetPozition($Key,$Value);
+            if(!empty(Yii::$app->request->post('poz'))) {
+                foreach(Yii::$app->request->post('poz') AS $Key=>$Value)
+                {
+                    $model->SetPozition($Key,$Value);
+                }
             }
             $WasPoz = true;
         }

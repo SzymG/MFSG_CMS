@@ -29,18 +29,15 @@ $ItemContentList2['main'] = Yii::t('app', 'a_menu_main');
 $ItemContentList2['none'] = Yii::t('app', 'a_menu_main');
 $ItemContentList2['login'] = Yii::t('app', 'a_is_only_for_authorized');
 $ItemContentList2['logout'] = Yii::t('app', 'a_menu_logout');
-$ItemContentList2['changepassword'] = Yii::t('app', 'a_menu_change_password');
 $ItemContentList2['profil'] = Yii::t('app', 'a_menu_profil');
 $ItemContentList2['register'] = Yii::t('app', 'a_menu_register');
 $ItemContentList2['password'] = Yii::t('app', 'a_menu_pass_reminder');
 $ItemContentList2['page'] = Yii::t('app', 'a_menu_page');
 $ItemContentList2['pageone'] = Yii::t('app', 'a_menu_page_one');
-$ItemContentList2['download'] = Yii::t('app', 'a_menu_download');
 $ItemContentList2['news'] = Yii::t('app', 'a_menu_news');
 $ItemContentList2['newsone'] = Yii::t('app', 'a_menu_news_one');
 $ItemContentList2['event'] = Yii::t('app', 'a_menu_events');
 $ItemContentList2['eventone'] = Yii::t('app', 'a_menu_event_one');
-$ItemContentList2['contact'] = Yii::t('app', 'a_menu_contact');
 $TableMakeMenu = array();
 $HowManyElements = count($MainAllPages);
 
@@ -62,13 +59,13 @@ style="width: 90px;">';
         echo '<option value="' . ($p + 1) . '"' . $Selected . '>' . ($p + 1) . '</option>';
     }
     echo '</select></div>
-    <div class="col-md-4">\'.$MainAllPages[$m][\'menu_title\'].\'</div>
-<div class="col-md-2">\'.$NeedLogin.\'</div>
-<div class="col-md-2">\'.$GoTo.\'</div>
-<div class="col-md-2">\'.Html::a(Yii::t(\'app\', \'com_delete_button\'),
-[\'/leftmenuadmin/index?delete=\'.$MainAllPages[$m][\'menu_id\']], [\'data\' => [\'confirm\' => Yii::t(\'app\',
-\'a_delete_shure\')]]).\'</div>
-</div>\'';
+    <div class="col-md-4">'.$MainAllPages[$m]['menu_title'].'</div>
+<div class="col-md-2">'.$NeedLogin.'</div>
+<div class="col-md-2">'.$GoTo.'</div>
+<div class="col-md-2">'.Html::a(Yii::t('app', 'com_delete_button'),
+['/leftmenuadmin/index?delete='.$MainAllPages[$m]['menu_id']], ['data' => ['confirm' => Yii::t('app',
+'a_delete_shure')]]).'</div>
+</div>';
     $HowManyElementsSub = count($MainSubPages);
     $IsSubOdThisMenu = 0;
     for ($sub = 0; $sub < count($MainSubPages); $sub++) {
@@ -94,14 +91,13 @@ class="form-control" style="width: 90px;">';
                 }
                 echo '<option value="' . ($p + 1) . '"' . $Selected . '>' . ($p + 1) . '</option>';
             }
-            echo '</select></div>
+            echo ('</select></div>
 <div class="col-md-4" style="padding-left: 30px;">' . $MainSubPages[$sub]['menu_title'] . '</div>
-<div class="col-md-2">\'.$NeedLogin.\'</div>
-<div class="col-md-2">\'.$GoTo.\'</div>
-<div class="col-md-2">\'.Html::a(Yii::t(\'app\', \'com_delete_button\'),
-[\'/leftmenuadmin/index?delete=\'.$MainSubPages[$sub][\'menu_id\']], [\'data\' => [\'confirm\' => Yii::t(\'app\',
-\'a_delete_shure\')]]).\'</div>
-</div>\'';
+<div class="col-md-2">'.$NeedLogin.'</div>
+<div class="col-md-2">'.$GoTo.'</div>
+<div class="col-md-2">'.Html::a(Yii::t('app', 'com_delete_button'),
+['/leftmenuadmin/index?delete='.$MainSubPages[$sub]['menu_id']], ['data' => ['confirm' => Yii::t('app',
+'a_delete_shure')]]).'</div></div>');
         }
     }
 }
@@ -138,18 +134,15 @@ if($WasAdded)
 $ItemContentList['main'] = Yii::t('app', 'a_menu_main');
 $ItemContentList['login'] = Yii::t('app', 'a_is_only_for_authorized');
 $ItemContentList['logout'] = Yii::t('app', 'a_menu_logout');
-$ItemContentList['changepassword'] = Yii::t('app', 'a_menu_change_password');
 $ItemContentList['profil'] = Yii::t('app', 'a_menu_profil');
 $ItemContentList['register'] = Yii::t('app', 'a_menu_register');
 $ItemContentList['password'] = Yii::t('app', 'a_menu_pass_reminder');
 $ItemContentList['page'] = Yii::t('app', 'a_menu_page');
 $ItemContentList['pageone'] = Yii::t('app', 'a_menu_page_one');
-$ItemContentList['download'] = Yii::t('app', 'a_menu_download');
 $ItemContentList['news'] = Yii::t('app', 'a_menu_news');
 $ItemContentList['newsone'] = Yii::t('app', 'a_menu_news_one');
 $ItemContentList['event'] = Yii::t('app', 'a_menu_events');
 $ItemContentList['eventone'] = Yii::t('app', 'a_menu_event_one');
-$ItemContentList['contact'] = Yii::t('app', 'a_menu_contact');
 
 echo $form->field($model, 'menu_what')->dropDownList($ItemContentList);
 ?>
@@ -175,8 +168,6 @@ $ItemLoginList['n'] = Yii::t('app', 'a_no');
 $ItemLoginList['y'] = Yii::t('app', 'a_yes');
 echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList);
 ?>
-
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'a_menu_add'), ['class' =>'btn btn-primary']) ?>
     </div>
@@ -184,10 +175,10 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
 </div>
 <script>
 
-    $("#leftmenuadmin-menu_what").change(function () {
-        var str = "";
-        $("#leftmenuadmin-menu_what option:selected").each(function()
-        {
+   $("#leftmenuadmin-menu_what").change(function () {
+       var str = "";
+       $("#leftmenuadmin-menu_what option:selected").each(function()
+       {
             if($(this).val() == "main")
             {
                 var newOptions = {"<?php echo Yii::t('app', 'a_menu_main'); ?>": "main"};
@@ -267,7 +258,8 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
                 {
                     $el.append($("<option></option>").attr("value", value).text(key));
                 });
-            }else if($(this).val() == "pageone")
+            }
+            else if($(this).val() == "pageone")
             {
                 $("#leftmenuadmin-menu_content_id").empty();
                 <?php
@@ -277,21 +269,10 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
                 {
                 $TableReady[] = '"'.$Value.'": "'.$Key.'"';
                 ?>
-                $("#leftmenuadmin-menu_content_id").append( "<option value=\"<?php echo $Key; ?>\"><?php echo $Key.' -
-'.$Value; ?></option>" );
+                    $("#leftmenuadmin-menu_content_id").append( "<option value=\"<?php echo $Key; ?>\"><?php echo $Key.' -'.$Value; ?></option>" );
                 <?php
                 }
                 ?>
-            }
-            else if($(this).val() == "download")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_download'); ?>": "download"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
             }
             else if($(this).val() == "news")
             {
@@ -313,21 +294,10 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
                 {
                 $TableReady[] = '"'.$Value.'": "'.$Key.'"';
                 ?>
-                $("#leftmenuadmin-menu_content_id").append( "<option value=\"<?php echo $Key; ?>\"><?php echo $Key.' -
-'.$Value; ?></option>" );
+                $("#leftmenuadmin-menu_content_id").append( "<option value=\"<?php echo $Key; ?>\"><?php echo $Key.' -'.$Value; ?></option>" );
                 <?php
                 }
                 ?>
-            }
-            else if($(this).val() == "contact")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_contact'); ?>": "contact"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
             }
             else if($(this).val() == "event")
             {
@@ -347,18 +317,14 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
                 $TableReady = array();
                 foreach($EventsTable as $Key=>$Value)
                 {
-                $TableReady[] = '"'.$Value.'": "'.$Key.'"';
+                    $TableReady[] = '"'.$Value.'": "'.$Key.'"';
                 ?>
-                $("#leftmenuadmin-menu_content_id").append( "<option value=\"<?php echo $Key; ?>\"><?php echo $Key.' -
-'.$Value; ?></option>" );
+                $("#leftmenuadmin-menu_content_id").append( "<option value=\"<?php echo $Key; ?>\"><?php echo $Key.' -'.$Value; ?></option>" );
                 <?php
                 }
                 ?>
             }
-        });
-    })
-        .change();
+       });
+   })
+       .change();
 </script>
-
-
-
