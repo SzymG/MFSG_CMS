@@ -7,9 +7,6 @@ use yii\db\Migration;
  */
 class m201211_180058_alter_page_table extends Migration
 {
-    private $true = 1;
-    private $false = 0;
-
     public function safeUp()
     {
 
