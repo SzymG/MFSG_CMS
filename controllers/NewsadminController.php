@@ -68,6 +68,7 @@ class NewsadminController extends Controller
     public function actionCreate()
     {
         $model = new Newsadmin();
+        $model->news_date = date('Y-m-d H:i:s');
 
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
