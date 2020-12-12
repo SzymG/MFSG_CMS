@@ -10,6 +10,7 @@ use yii\helpers\Html;
 $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+$session = Yii::$app->session;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,6 +23,16 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+<script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-3.5.1.min.js"
+        type="text/javascript"></script>
+<script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery.selection.js"></script>
+<script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-ui.min.js"></script>
+
+<link href="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-ui.css" rel="stylesheet" />
+<link href="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-ui-timepicker-addon.css"
+      rel="stylesheet" />
+<script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-ui-timepicker-addon.js"></script>
+<script src="<?php echo Yii::$app->params['pageUrl']; ?>library/ckeditor/ckeditor.js"></script>
 <body class="hold-transition sidebar-mini">
 <?php $this->beginBody() ?>
 
