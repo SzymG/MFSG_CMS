@@ -1,9 +1,13 @@
 <?php
 namespace app\models;
+use app\helpers\UploadHelper;
 use Yii;
 
 class Newsadmin extends \yii\db\ActiveRecord
 {
+
+    public $file_photo;
+
     public static function tableName()
     {
         return '{{%news}}';
@@ -37,4 +41,23 @@ class Newsadmin extends \yii\db\ActiveRecord
         ];
     }
 
+
+    public function upload($nameSet) {
+        if(!$this->file_photo) {
+            return true;
+        }
+        if ($this->validate()) {
+            return $result = $this->file_photo->saveAs($nameSet['fullName']) ? $nameSet['fullName'] : null;
+        } else {
+            return false;
+        }
+    }
+
+    public function unlinkPhoto($photo) {
+        $fileToUnlink = UploadHelper::getUploadPath().'/'.$photo;
+        if(file_exists($fileToUnlink)) {
+            unlink(UploadHelper::getUploadPath().'/'.$photo);
+        }
+        return true;
+    }
 }

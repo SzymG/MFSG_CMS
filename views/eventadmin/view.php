@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 $this->title = $model->event_title;
@@ -34,6 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'event_url',
             'is_only_for_authorized',
             'is_active',
+            [
+                'attribute'=>'event_photo_url',
+                'value'=>Url::base().'/storage/index?f='.$model->event_photo_url,
+                'format' => ['image',['height'=>'100']],
+            ],
         ],
     ]) ?>
 </div>

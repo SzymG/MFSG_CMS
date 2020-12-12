@@ -1,11 +1,13 @@
 <?php
 namespace app\controllers;
+use app\helpers\UploadHelper;
 use Yii;
 use app\models\Newsadmin;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 
 class NewsadminController extends Controller
@@ -70,11 +72,15 @@ class NewsadminController extends Controller
         $model = new Newsadmin();
         $model->news_date = date('Y-m-d H:i:s');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
-        {
-            $idText = 'ID: '.$model->news_id;
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_add'), $idText);
-            return $this->redirect(['view', 'id' => $model->news_id]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->file_photo = UploadedFile::getInstance($model, 'news_photo_url');
+            $nameSet = UploadHelper::generatePath($model->file_photo->extension);
+            $model->news_photo_url = $nameSet['name'];
+            if($model->save() && $model->upload($nameSet)) {
+                $idText = 'ID: '.$model->news_id;
+                Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_news'), $idText);
+                return $this->redirect(['view', 'id' => $model->news_id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -87,11 +93,23 @@ class NewsadminController extends Controller
         $model = new Newsadmin();
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
+        if ($model->load(Yii::$app->request->post()) && $model->validate())
         {
-            $idText = 'ID: '.$id;
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_updated'), $idText);
-            return $this->redirect(['view', 'id' => $model->news_id]);
+            $uploadSuccess = true;
+
+            if (!empty(UploadedFile::getInstance($model, 'news_photo_url'))) {
+                $model->file_photo = UploadedFile::getInstance($model, 'news_photo_url');
+                $nameSet = UploadHelper::generatePath($model->file_photo->extension);
+                $model->unlinkPhoto($model->news_photo_url);
+                $model->news_photo_url = $nameSet['name'];
+                $uploadSuccess = $model->upload($nameSet);
+            }
+
+            if($uploadSuccess && $model->save()) {
+                $idText = 'ID: '.$id;
+                Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_updated'), $idText);
+                return $this->redirect(['view', 'id' => $model->news_id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -101,7 +119,11 @@ class NewsadminController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if($model->news_photo_url) {
+            $model->unlinkPhoto($model->news_photo_url);
+        }
+        $model->delete();
         $idText = 'ID: '.$id;
         Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_news_delete'), $idText);
 

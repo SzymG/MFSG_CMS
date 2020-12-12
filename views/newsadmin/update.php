@@ -16,11 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <script>
 
-    $('#newsadmin-news_date').datetimepicker({
-        timeFormat: "HH:mm:ss",
-        dateFormat: "yy-mm-dd"
-    });
-
     $("#newsadmin-news_title").change(function () {
         str = $("#newsadmin-news_title").val();
         strChangeLang = str.replace(/ą/g, 'a').replace(/Ą/g, 'A')
@@ -61,4 +56,19 @@ $this->params['breadcrumbs'][] = $this->title;
     CKEDITOR.replace('newsadmin-news_text');
     CKEDITOR.config.height = 500;
     CKEDITOR.config.skin = 'office2013';
+
+    $('#newsadmin-news_photo_url').change(_ => {
+        const input = document.getElementById('newsadmin-news_photo_url');
+        if(input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                $('#current-image').hide();
+                const preview = document.getElementById('url_icon-container');
+                preview.classList.add('icon-container');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
 </script>

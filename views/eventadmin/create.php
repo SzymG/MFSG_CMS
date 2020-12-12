@@ -15,7 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-    $('#eventadmin-event_date').datetimepicker({
+    $('#eventadmin-event_date_start').datetimepicker({
+        timeFormat: "HH:mm:ss",
+        dateFormat: "yy-mm-dd"
+    });
+    $('#eventadmin-event_date_end').datetimepicker({
         timeFormat: "HH:mm:ss",
         dateFormat: "yy-mm-dd"
     });
@@ -59,6 +63,20 @@ $this->params['breadcrumbs'][] = $this->title;
     CKEDITOR.replace('eventadmin-event_text');
     CKEDITOR.config.height = 500;
     CKEDITOR.config.skin = 'office2013';
+
+    $('#eventadmin-event_photo_url').change(_ => {
+        const input = document.getElementById('eventadmin-event_photo_url');
+        if(input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const preview = document.getElementById('url_icon-container');
+                preview.classList.add('icon-container');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
 </script>
 
 

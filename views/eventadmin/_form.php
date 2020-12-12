@@ -1,5 +1,9 @@
 <?php
+
+use app\helpers\UploadHelper;
+use yii\helpers\FileHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 ?>
 
@@ -15,8 +19,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'event_date_start')->textInput() ?>
     <?= $form->field($model, 'event_date_end')->textInput() ?>
     <?= $form->field($model, 'event_url')->textInput(['maxlength' => true]) ?>
-<!--    TODO tutaj zmienić na upload zdjęć -->
-    <?= $form->field($model, 'event_photo_url')->textInput(['maxlength' => true]) ?>
+    <?php if(!empty($model->event_photo_url)): ?>
+        <?= Html::img(Url::base().'/storage/index?f='.$model->event_photo_url, ['id' => 'current-image']); ?>
+    <?php endif; ?>
+    <?= $form->field($model, 'event_photo_url')->fileInput() ?>
+    <?= $form->field($model, 'event_photo_url')->hiddenInput()->label(false); ?>
+    <img id="url_icon-container">
     <?= $form->field($model, 'is_only_for_authorized')->checkbox() ?>
     <?= $form->field($model, 'is_active')->checkbox() ?>
 

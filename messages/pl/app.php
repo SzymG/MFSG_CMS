@@ -160,6 +160,8 @@ return [
     'comm_no' => 'Nie wymaga logowania',
     'com_delete_button' => 'Usuń pozycję',
     'a_option_menu_saved' => 'Opcja została dodana',
+    'event_url' =>  'Adres URL wydarzenia',
+    'event_photo_url' =>  'Zdjęcie',
     // TODO dodać resztę tłumaczeń
  ];
 

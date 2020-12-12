@@ -64,7 +64,7 @@ class PageadminController extends Controller
     {
         $model = new Pageadmin();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
             $idText = 'ID: '.$model->page_id;
             Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_page'), $idText);
             return $this->redirect(['view', 'id' => $model->page_id]);
@@ -78,7 +78,7 @@ class PageadminController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
             $idText = 'ID: '.$model->page_id;
             Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_page'), $idText);
             return $this->redirect(['view', 'id' => $model->page_id]);
