@@ -61,7 +61,7 @@ class Page extends Model {
 
     public function SelectHome()
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE page_main = "y"')
+        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE page_main = 1')
             ->queryOne();
 
         if($QueryData == false)
