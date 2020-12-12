@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 
 class EventadminController extends Controller
 {
-    public $layout = 'admin';
+    //public $layout = 'admin';
     public function beforeAction($action)
     {
         $session = Yii::$app->session;

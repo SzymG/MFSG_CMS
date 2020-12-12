@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 
 class ConfigadminController extends Controller
 {
-    public $layout = 'admin';
+    //public $layout = 'admin';
 
     public function beforeAction($action)
     {

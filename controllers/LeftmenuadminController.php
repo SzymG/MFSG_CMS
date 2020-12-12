@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 class LeftmenuadminController extends Controller
 {
     // TODO tutaj mogłem coś namieszać bo zmieniałem article na event blog na news itp
-    public $layout = 'admin';
+    //public $layout = 'admin';
     public function beforeAction($action)
     {
         $session = Yii::$app->session;
