@@ -66,7 +66,7 @@ class EventadminController extends Controller
     public function actionCreate()
     {
         $model = new Eventadmin();
-
+        $model->event_date = date('Y-m-d H:i:s');
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
             $idText = 'ID: '.$model->event_id;

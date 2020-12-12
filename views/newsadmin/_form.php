@@ -10,8 +10,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'news_title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'news_text')->textarea(['rows' => 6]) ?>
-    <!--    TODO tutaj zmienić żeby data nie była wpisywana,tylko generowana automatycznie w momencie zapisu -->
-    <?= $form->field($model, 'news_date')->textInput() ?>
+    <!--<?= $form->field($model, 'news_date')->textInput() ?> -->
     <?= $form->field($model, 'news_url')->textInput(['maxlength' => true]) ?>
 <!--    TODO tutaj zmienić na upload zdjęć -->
     <?= $form->field($model, 'news_photo_url')->textInput(['maxlength' => true]) ?>
