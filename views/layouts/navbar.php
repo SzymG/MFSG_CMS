@@ -232,7 +232,7 @@ $session = Yii::$app->session;
         if($session['yii_user_id'] != "") {
         ?>
         <li class="nav-item user-menu">
-            <a href="profile" class="nav-link">
+            <a href=['/profile'] class="nav-link">
                 <img src="<?=$assetDir?>/img/anonymous-user.png" class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><?php echo $session["yii_user_email"]?></span>
             </a>

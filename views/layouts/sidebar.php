@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Leftmenuadmin;
+
 $session = Yii::$app->session;
 
 ?>
@@ -32,6 +34,55 @@ $session = Yii::$app->session;
         <nav class="mt-2">
 
             <?php
+
+            $MainAllPages = Leftmenuadmin::find()
+                ->where(['menu_parent_id' => 0])
+                ->asArray()
+                ->orderBy('menu_poz')
+                ->all();
+            $MainSubPages = Leftmenuadmin::find()
+                ->where('menu_parent_id != 0')
+                ->asArray()
+                ->orderBy('menu_poz')
+                ->all();
+
+            foreach($MainAllPages as $page){
+                if($page['is_only_for_authorized'] == 0 or $session['yii_user_id'] != ''){
+
+                    if($page['menu_what'] == 'eventone' || $page['menu_what'] == 'newsone'){
+                        $url = '/'.str_replace('one', '', $page['menu_what']).'/'.$page['menu_extra'].'/'.$page['menu_content_id'];
+                    }else{
+                        $url = '/'.$page['menu_what'];
+                    }
+
+                    $subItem = [];
+
+                    foreach($MainSubPages as $subPage){
+                        if($subPage['menu_parent_id'] == $page['menu_id']){
+                            if($subPage['menu_what'] == 'eventone' || $subPage['menu_what'] == 'newsone'){
+                                $subUrl = '/'.str_replace('one', '', $subPage['menu_what']).'/'.$subPage['menu_extra'].'/'.$subPage['menu_content_id'];
+                            }else{
+                                $subUrl = '/'.$subPage['menu_what'];
+                            }
+                            $subItem[] = ['label' => $subPage['menu_title'], 'url' => [$subUrl], 'icon' => ''];
+                        }
+                    }
+                    if ($subItem == []) {
+                        echo \hail812\adminlte3\widgets\Menu::widget([
+                            'items' => [
+                                ['label' => $page['menu_title'], 'url' => [$url], 'icon' => ''],
+                            ]
+                        ]);
+                    }else{
+                        echo \hail812\adminlte3\widgets\Menu::widget([
+                            'items' => [
+                                ['label' => $page['menu_title'], 'items' => $subItem,'icon' => ''],
+                            ]
+                        ]);
+                    }
+                }
+            }
+
             if($session['yii_user_root'] == 1) {
                 echo \hail812\adminlte3\widgets\Menu::widget([
                     'items' => [
@@ -47,7 +98,9 @@ $session = Yii::$app->session;
                             ], 'icon' => 'users-cog'
                         ],
                         ['label' => Yii::t('app', 'a_amenu_left_menu'), 'url' => ['/leftmenuadmin/index'], 'icon' => 'bars'],
-                    ]
+
+
+                        ]
                 ]);
             }
                 /*'items' => [
