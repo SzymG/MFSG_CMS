@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 
 class Error404adminController extends Controller
 {
-    public $layout = 'admin';
+    //public $layout = 'admin';
 
     public function beforeAction($action)
     {
