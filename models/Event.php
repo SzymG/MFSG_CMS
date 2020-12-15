@@ -22,9 +22,13 @@ class Event extends Model
     }
 
     public function CountAll() {
-        $QueryData = Yii::$app->db->createCommand('SELECT count(event_id) AS HowManyRecords FROM {{%event}}')
-            ->queryScalar();
+        $query = Yii::$app->db->createCommand('SELECT count(event_id) AS HowManyRecords FROM {{%event}} WHERE is_active = 1 ');
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT count(event_id) AS HowManyRecords FROM {{%event}} WHERE is_active = 1 AND is_only_for_authorized = 0');
+        }
 
+        $QueryData = $query->queryScalar();
         $ToReturn = 0;
 
         if($QueryData != false)
@@ -37,8 +41,16 @@ class Event extends Model
 
     public function SelectEvents($Start,$Limit)
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%event}} ORDER BY event_id DESC LIMIT
-            :start,:limit')
+        $query = Yii::$app->db->createCommand('SELECT * FROM {{%event}} WHERE is_active = 1 ORDER BY event_id DESC LIMIT
+            :start,:limit');
+
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT * FROM {{%event}} WHERE is_active = 1 AND is_only_for_authorized = 0 ORDER BY event_id DESC LIMIT
+            :start,:limit');
+        }
+
+        $QueryData = $query
             ->bindParam(':start', $Start)
             ->bindParam(':limit', $Limit)
             ->queryAll();
@@ -48,9 +60,15 @@ class Event extends Model
 
     public function SelectOneEvent($EventId)
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%event}} WHERE event_id = :event_id')
-            ->bindParam(':event_id', $EventId)
-            ->queryOne();
+        $query = Yii::$app->db->createCommand('SELECT * FROM {{%event}} WHERE event_id = :event_id AND is_active = 1');
+
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT * FROM {{%event}} WHERE event_id = :event_id AND is_active = 1 AND is_only_for_authorized = 0');
+        }
+
+        $query->bindParam(':event_id', $EventId);
+        $QueryData = $query->queryOne();
 
         if($QueryData == false)
         {

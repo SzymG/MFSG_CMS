@@ -162,6 +162,19 @@ return [
     'a_option_menu_saved' => 'Opcja została dodana',
     'event_url' =>  'Adres URL wydarzenia',
     'event_photo_url' =>  'Zdjęcie',
+    'p_news_no_entry' =>  'Aktualność nie istnieje',
+    'p_news_no_entry_comm' =>  'Poszukiwana aktualność nie istnieje, jest nieaktywna lub nie masz do niej dostępu',
+    'p_news_header' =>  'Lista aktualności',
+    'p_news_published' =>  'Dodano',
+    'p_news_read_more' =>  'Zobacz więcej',
+    'p_event_date' =>  'Dodano',
+    'p_events_header' =>  'Lista wydarzeń',
+    'p_event_read_more' =>  'Zobacz więcej',
+    'p_event_no_event' =>  'Wydarzenie nie istnieje',
+    'p_event_no_event_comm' =>  'Poszukiwane wydarzenie nie istnieje, jest nieaktywne lub nie masz do niego dostępu',
+    'a_title_page_dont_exists' =>  'Strona nie istnieje',
+    'page_dont_exists' =>  'Poszukiwana strona nie istnieje lub nie masz do niej dostępu',
+    'comm_yes' =>  'Wymaga logowania',
     // TODO dodać resztę tłumaczeń
  ];
 

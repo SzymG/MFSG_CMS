@@ -32,7 +32,6 @@ $ItemContentList2['logout'] = Yii::t('app', 'a_menu_logout');
 $ItemContentList2['profil'] = Yii::t('app', 'a_menu_profil');
 $ItemContentList2['register'] = Yii::t('app', 'a_menu_register');
 $ItemContentList2['password'] = Yii::t('app', 'a_menu_pass_reminder');
-$ItemContentList2['page'] = Yii::t('app', 'a_menu_page');
 $ItemContentList2['pageone'] = Yii::t('app', 'a_menu_page_one');
 $ItemContentList2['news'] = Yii::t('app', 'a_menu_news');
 $ItemContentList2['newsone'] = Yii::t('app', 'a_menu_news_one');
@@ -137,7 +136,6 @@ $ItemContentList['logout'] = Yii::t('app', 'a_menu_logout');
 $ItemContentList['profil'] = Yii::t('app', 'a_menu_profil');
 $ItemContentList['register'] = Yii::t('app', 'a_menu_register');
 $ItemContentList['password'] = Yii::t('app', 'a_menu_pass_reminder');
-$ItemContentList['page'] = Yii::t('app', 'a_menu_page');
 $ItemContentList['pageone'] = Yii::t('app', 'a_menu_page_one');
 $ItemContentList['news'] = Yii::t('app', 'a_menu_news');
 $ItemContentList['newsone'] = Yii::t('app', 'a_menu_news_one');
@@ -153,7 +151,7 @@ $ItemList = array();
 <?= $form->field($model, 'menu_content_id')->dropDownList($ItemList) ?>
 <?php
 
-$ItemSubList['n'] = Yii::t('app', 'a_no');
+$ItemSubList[0] = Yii::t('app', 'a_no');
 
 foreach($MainsTable as $Key=>$Value)
 {
@@ -164,8 +162,8 @@ echo $form->field($model, 'menu_parent_id')->dropDownList($ItemSubList);
 ?>
 <?php
 
-$ItemLoginList['n'] = Yii::t('app', 'a_no');
-$ItemLoginList['y'] = Yii::t('app', 'a_yes');
+$ItemLoginList[0] = Yii::t('app', 'a_no');
+$ItemLoginList[1] = Yii::t('app', 'a_yes');
 echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList);
 ?>
     <div class="form-group">

@@ -49,7 +49,7 @@ $session = Yii::$app->session;
             foreach($MainAllPages as $page){
                 if($page['is_only_for_authorized'] == 0 or $session['yii_user_id'] != ''){
 
-                    if($page['menu_what'] == 'eventone' || $page['menu_what'] == 'newsone'){
+                    if($page['menu_what'] == 'eventone' || $page['menu_what'] == 'newsone' || $page['menu_what'] == 'pageone'){
                         $url = '/'.str_replace('one', '', $page['menu_what']).'/'.$page['menu_extra'].'/'.$page['menu_content_id'];
                     }else{
                         $url = '/'.$page['menu_what'];
@@ -59,7 +59,7 @@ $session = Yii::$app->session;
 
                     foreach($MainSubPages as $subPage){
                         if($subPage['menu_parent_id'] == $page['menu_id']){
-                            if($subPage['menu_what'] == 'eventone' || $subPage['menu_what'] == 'newsone'){
+                            if($subPage['menu_what'] == 'eventone' || $subPage['menu_what'] == 'newsone' || $subPage['menu_what'] == 'pageone'){
                                 $subUrl = '/'.str_replace('one', '', $subPage['menu_what']).'/'.$subPage['menu_extra'].'/'.$subPage['menu_content_id'];
                             }else{
                                 $subUrl = '/'.$subPage['menu_what'];
@@ -86,7 +86,7 @@ $session = Yii::$app->session;
             if($session['yii_user_root'] == 1) {
                 echo \hail812\adminlte3\widgets\Menu::widget([
                     'items' => [
-                        ['label' => 'Panel Administratora', 'header' => true],
+                        ['label' => Yii::t('app', 'a_admin'), 'header' => true],
                         ['label' => Yii::t('app', 'a_amenu_config'), 'url' => ['/configadmin/index'], 'icon' => 'wrench'],
                         ['label' => Yii::t('app', 'a_amenu_page'), 'url' => ['/pageadmin/index'], 'icon' => 'window-maximize'],
                         ['label' => Yii::t('app', 'a_amenu_events'), 'url' => ['/eventadmin/index'], 'icon' => 'calendar-alt'],
