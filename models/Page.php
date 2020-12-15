@@ -18,8 +18,13 @@ class Page extends Model {
 
     public function CountAll()
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT count(page_id) AS HowManyRecords FROM {{%page}}')
-            ->queryScalar();
+        $query = Yii::$app->db->createCommand('SELECT count(page_id) AS HowManyRecords FROM {{%page}} WHERE is_active = 1 ');
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT count(page_id) AS HowManyRecords FROM {{%page}} WHERE is_active = 1 AND is_only_for_authorized = 0');
+        }
+
+        $QueryData = $query->queryScalar();
         $ToReturn = 0;
         if($QueryData != false)
         {
@@ -30,18 +35,35 @@ class Page extends Model {
 
     public function SelectPages($Start,$Limit)
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%page}} ORDER BY page_id DESC LIMIT :start,:limit')
+        $query = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE is_active = 1 ORDER BY page_id DESC LIMIT
+            :start,:limit');
+
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE is_active = 1 AND is_only_for_authorized = 0 ORDER BY page_id DESC LIMIT
+            :start,:limit');
+        }
+
+        $QueryData = $query
             ->bindParam(':start', $Start)
             ->bindParam(':limit', $Limit)
             ->queryAll();
+
         return $QueryData;
     }
 
     public function SelectOnePage($PageId)
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE page_id = :page_id')
-            ->bindParam(':page_id', $PageId)
-            ->queryOne();
+        $query = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE page_id = :page_id AND is_active = 1 ');
+
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT * FROM {{%page}} WHERE page_id = :page_id AND is_active = 1 AND is_only_for_authorized = 0');
+        }
+
+        $query->bindParam(':page_id', $PageId);
+        $QueryData = $query->queryOne();
+        
         if($QueryData == false)
         {
             $ToReturn = false;

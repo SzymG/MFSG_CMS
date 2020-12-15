@@ -7,7 +7,6 @@ use yii\data\Pagination;
 
 class NewsController extends Controller
 {
-    // TODO wyrzucanie ze strony, jeśli jest przeznaczona tylko dla zalogownych  albo jeśli jest OFF
     public function actionIndex()
     {
         $model = new News();
@@ -19,7 +18,7 @@ class NewsController extends Controller
         return $this->render('news', ['model' => $model, 'SelectNews' => $SelectNews, 'pagination' => $pagination]);
     }
 
-    public function actionShowone($NewsUrl,$NewsId)
+    public function actionShowone($NewsUrl, $NewsId)
     {
         $model = new News();
 

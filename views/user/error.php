@@ -3,10 +3,17 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'user_error404');
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerAssetBundle('app\assets\AppAsset');
+
 ?>
 
 <div class="site-error">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <p><?php echo Yii::t('app', 'user_error404_com'); ?></p>
+    <div class="mainbox">
+        <div class="err">4</div>
+        <div class="far-ghost"></div>
+        <i class="far fa-question-circle fa-spin"></i>
+        <div class="err2">4</div>
+    </div>
+    <p class="err-message"><?php echo Yii::t('app', 'user_error404_com'); ?></p>
 </div>
 

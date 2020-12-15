@@ -21,8 +21,13 @@ class News extends Model
 
     public function CountAll()
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT count(news_id) AS HowManyRecords FROM {{%news}}')
-            ->queryScalar();
+        $query = Yii::$app->db->createCommand('SELECT count(news_id) AS HowManyRecords FROM {{%news}} WHERE is_active = 1 ');
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT count(news_id) AS HowManyRecords FROM {{%news}} WHERE is_active = 1 AND is_only_for_authorized = 0');
+        }
+
+        $QueryData = $query->queryScalar();
         $ToReturn = 0;
 
         if($QueryData != false)
@@ -35,8 +40,16 @@ class News extends Model
 
     public function SelectNews($Start,$Limit)
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%news}} ORDER BY news_id DESC LIMIT
-            :start,:limit')
+        $query = Yii::$app->db->createCommand('SELECT * FROM {{%news}} WHERE is_active = 1 ORDER BY news_id DESC LIMIT
+            :start,:limit');
+
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT * FROM {{%news}} WHERE is_active = 1 AND is_only_for_authorized = 0 ORDER BY news_id DESC LIMIT
+            :start,:limit');
+        }
+
+        $QueryData = $query
             ->bindParam(':start', $Start)
             ->bindParam(':limit', $Limit)
             ->queryAll();
@@ -45,9 +58,15 @@ class News extends Model
     }
     public function SelectOneNews($NewsId)
     {
-        $QueryData = Yii::$app->db->createCommand('SELECT * FROM {{%news}} WHERE news_id = :news_id')
-            ->bindParam(':news_id', $NewsId)
-            ->queryOne();
+        $query = Yii::$app->db->createCommand('SELECT * FROM {{%news}} WHERE news_id = :news_id AND is_active = 1');
+
+        $session = Yii::$app->session;
+        if($session['yii_user_id'] == "") {
+            $query = Yii::$app->db->createCommand('SELECT * FROM {{%news}} WHERE news_id = :news_id AND is_active = 1 AND is_only_for_authorized = 0');
+        }
+
+        $query->bindParam(':news_id', $NewsId);
+        $QueryData = $query->queryOne();
 
         if($QueryData == false)
         {

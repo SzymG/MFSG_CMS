@@ -43,7 +43,6 @@ $config = [
             ],
         ],
         'errorHandler' => [
-//            'errorAction' => 'site/error', ADMINLTE custom error handling
             'errorAction' => 'user/error',
         ],
         'mailer' => [

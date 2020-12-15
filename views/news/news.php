@@ -10,8 +10,6 @@ echo LinkPager::widget([
     'pagination' => $pagination,
 ]);
 
-echo '<h1>'.Yii::t('app', 'p_news_header').'</h1>';
-
 for($Pages=0;$Pages<count($SelectNews);$Pages++)
 {
     echo '<h2>'.$SelectNews[$Pages]['news_title'].'</h2>';
