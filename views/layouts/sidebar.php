@@ -17,7 +17,7 @@ $session = Yii::$app->session;
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <?php
+        <!-- <?php
         if($session['yii_user_id'] != "") {
         ?>
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -28,7 +28,7 @@ $session = Yii::$app->session;
                 <a href="#" class="d-block"><?php echo $session["yii_user_email"]?></a>
             </div>
         </div>
-        <?php } ?>
+        <?php } ?> -->
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
