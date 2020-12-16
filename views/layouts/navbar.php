@@ -15,7 +15,7 @@ $session = Yii::$app->session;
         <li class="nav-item d-none d-sm-inline-block">
             <?= Html::a(Yii::t('app', 'link_home'), ['/'], ['class' => 'nav-link']) ?>
         </li>
-        <?php
+        <!--<?php
         if($session['yii_user_root'] == 1) {
             ?>
 
@@ -48,7 +48,7 @@ $session = Yii::$app->session;
             </li>
 
 
-        <?php } ?>
+        <?php } ?> -->
         <!--<li class="nav-item d-none d-sm-inline-block">
             <a href="<?=\yii\helpers\Url::home()?>" class="nav-link">Home</a>
         </li>
@@ -233,7 +233,7 @@ $session = Yii::$app->session;
         ?>
         <li class="nav-item user-menu">
             <a href=['/profile'] class="nav-link">
-                <img src="<?=$assetDir?>/img/anonymous-user.png" class="user-image img-circle elevation-2" alt="User Image">
+                <img src="image/anonymous-user.png" class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><?php echo $session["yii_user_email"]?></span>
             </a>
             <!--<?= Html::a(
