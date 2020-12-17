@@ -233,7 +233,7 @@ $session = Yii::$app->session;
         ?>
         <li class="nav-item user-menu">
             <a href=['/profile'] class="nav-link">
-                <img src="image/anonymous-user.png" class="user-image img-circle elevation-2" alt="User Image">
+                <img src="<?php echo Yii::$app->params['pageUrl']; ?>image/anonymous-user.png" class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><?php echo $session["yii_user_email"]?></span>
             </a>
             <!--<?= Html::a(

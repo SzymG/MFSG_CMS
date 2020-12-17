@@ -31,7 +31,7 @@ class OtherFunctionsComponent extends Component
 
     }
 
-    private function MakeUrl($OtherData, $What, $Id = '', $Extra = '')
+    public function MakeUrl($What, $Id = '', $Extra = '')
     {
         if ($What == 'main') {
             $Url = Yii::$app->params['pageUrl'];

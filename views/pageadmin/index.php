@@ -8,7 +8,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pageadmin-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <p>
         <?= Html::a(Yii::t('app', 'a_create_text_page_header'), ['create'], ['class' =>'btn btn-success']) ?>
     </p>

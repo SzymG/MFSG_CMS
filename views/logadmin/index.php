@@ -7,7 +7,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'a_admin'), 'url' => 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="blogadmin-index">
-    <h1><?= Html::encode($this->title) ?></h1>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [

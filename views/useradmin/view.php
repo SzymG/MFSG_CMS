@@ -9,7 +9,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="useradmin-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <p>
 <?= Html::a(Yii::t('app', 'a_users_update_header'), ['update', 'id' => $model->user_id], ['class' =>'btn
 btn-primary']) ?>

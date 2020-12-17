@@ -49,28 +49,19 @@ $session = Yii::$app->session;
             foreach($MainAllPages as $page){
                 if($page['is_only_for_authorized'] == 0 or $session['yii_user_id'] != ''){
 
-                    if($page['menu_what'] == 'eventone' || $page['menu_what'] == 'newsone' || $page['menu_what'] == 'pageone'){
-                        $url = '/'.str_replace('one', '', $page['menu_what']).'/'.$page['menu_extra'].'/'.$page['menu_content_id'];
-                    }else{
-                        $url = '/'.$page['menu_what'];
-                    }
-
+                    $url = Yii::$app->OtherFunctionsComponent->MakeUrl($page['menu_what'],$page['menu_content_id'],$page['menu_extra']);
                     $subItem = [];
 
                     foreach($MainSubPages as $subPage){
                         if($subPage['menu_parent_id'] == $page['menu_id']){
-                            if($subPage['menu_what'] == 'eventone' || $subPage['menu_what'] == 'newsone' || $subPage['menu_what'] == 'pageone'){
-                                $subUrl = '/'.str_replace('one', '', $subPage['menu_what']).'/'.$subPage['menu_extra'].'/'.$subPage['menu_content_id'];
-                            }else{
-                                $subUrl = '/'.$subPage['menu_what'];
-                            }
-                            $subItem[] = ['label' => $subPage['menu_title'], 'url' => [$subUrl], 'icon' => ''];
+                            $subUrl = Yii::$app->OtherFunctionsComponent->MakeUrl($subPage['menu_what'],$subPage['menu_content_id'], $subPage['menu_extra']);
+                            $subItem[] = ['label' => $subPage['menu_title'], 'url' => $subUrl, 'icon' => ''];
                         }
                     }
                     if ($subItem == []) {
                         echo \hail812\adminlte3\widgets\Menu::widget([
                             'items' => [
-                                ['label' => $page['menu_title'], 'url' => [$url], 'icon' => ''],
+                                ['label' => $page['menu_title'], 'url' => $url, 'icon' => ''],
                             ]
                         ]);
                     }else{

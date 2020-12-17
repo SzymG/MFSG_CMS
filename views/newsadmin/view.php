@@ -10,7 +10,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="newsadmin-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <p>
         <?= Html::a(Yii::t('app', 'a_news_edit'), ['update', 'id' => $model->news_id], ['class' =>'btn btnprimary']) ?>
         <?= Html::a(Yii::t('app', 'a_news_delete'), ['delete', 'id' => $model->news_id], [
