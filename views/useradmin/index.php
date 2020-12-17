@@ -23,7 +23,35 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_namesurname',
             'user_register',
             'user_registered_ip',
-            ['class' =>'yii\grid\ActionColumn',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'view' => function ($url) {
+                        return Html::a(
+                            '<i class="fas fa-eye"></i>',
+                            $url,
+                            [
+                                'title' => 'Zobacz',
+                                'data-pjax' => '0',
+                            ]
+                        );
+                    },
+                    'update' => function ($url) {
+                        return Html::a(
+                            '<i class="fas fa-pencil-alt"></i>',
+                            $url,
+                            [
+                                'title' => 'Edytuj',
+                                'data-pjax' => '0',
+                            ]
+                        );
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<i class="fas fa-trash-alt"></i>', ['delete', 'id' => $model['user_id']], [
+                            'title' => Yii::t('app', 'com_delete_button'), 'data-confirm' => Yii::t('app', 'Czy na pewno chcesz usunąć?'),'data-method' => 'post']);
+                    },
+                ],
                 'visibleButtons' => [
                     'delete' => function ($model, $key, $index) {
                         return $model->user_id == 1 ? false : true;

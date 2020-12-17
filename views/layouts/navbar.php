@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $session = Yii::$app->session;
 
@@ -11,9 +12,6 @@ $session = Yii::$app->session;
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <?= Html::a(Yii::t('app', 'link_home'), ['/'], ['class' => 'nav-link']) ?>
         </li>
         <!--<?php
         if($session['yii_user_root'] == 1) {
@@ -232,13 +230,10 @@ $session = Yii::$app->session;
         if($session['yii_user_id'] != "") {
         ?>
         <li class="nav-item user-menu">
-            <a href=['/profile'] class="nav-link">
-                <img src="image/anonymous-user.png" class="user-image img-circle elevation-2" alt="User Image">
+            <a href='<?= Url::to(['/profile'])?>' class="nav-link">
+                <img src="<?= Url::to(['/image/anonymous-user.png'])?>" class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><?php echo $session["yii_user_email"]?></span>
             </a>
-            <!--<?= Html::a(
-                    'x',
-          ['/profile'], ['class' => 'nav-link']) ?> -->
         </li>
 
         <li class="nav-item">

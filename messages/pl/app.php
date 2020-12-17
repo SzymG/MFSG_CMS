@@ -175,6 +175,8 @@ return [
     'a_title_page_dont_exists' =>  'Strona nie istnieje',
     'page_dont_exists' =>  'Poszukiwana strona nie istnieje lub nie masz do niej dostępu',
     'comm_yes' =>  'Wymaga logowania',
+    'profile_header' =>  'Profil',
+    'profile_update_submit' =>  'Aktualizuj profil',
     // TODO dodać resztę tłumaczeń
  ];
 

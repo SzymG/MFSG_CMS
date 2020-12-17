@@ -71,6 +71,7 @@ $config = [
                 'news/<NewsUrl:[\w\-]+>/<NewsId:\d+>' => 'news/showone',
                 'news' => 'news/index',
                 'admin' => 'configadmin/index',
+                'admin/index' => 'configadmin/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
