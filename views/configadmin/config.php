@@ -8,7 +8,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="useradmin-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 <?php
 
 if($ConfigUpdated)

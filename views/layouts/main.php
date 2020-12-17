@@ -4,6 +4,11 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+
+
+$ConfigPage = Yii::$app->OtherFunctionsComponent->GetConfigData();
 
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
 \hail812\adminlte3\assets\AdminLteAsset::register($this);
@@ -21,7 +26,9 @@ $session = Yii::$app->session;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <meta name="description" content="<?php echo $ConfigPage['description']; ?>" />
+    <meta name="keywords" content="<?php echo $ConfigPage['keywords']; ?>" />
+    <title><?php echo Yii::t('app', 'a_logo'); ?></title>
     <?php $this->head() ?>
 </head>
 <script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-3.5.1.min.js"
