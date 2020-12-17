@@ -3,7 +3,6 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'user_error404');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerAssetBundle('app\assets\AppAsset');
 
 ?>
 
