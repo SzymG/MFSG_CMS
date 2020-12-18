@@ -186,8 +186,19 @@ return [
     'user_active' =>  'Aktywny użytkownik',
     'user_activated' =>  'Data aktywacji konta',
     'user_activated_ip' =>  'IP aktywacji',
-    'user_root' => 'Administrator'
-
+    'user_root' => 'Administrator',
+    'config_smtp_host' => 'SMTP Host',
+    'config_smtp_port' => 'SMTP Port',
+    'config_smtp_is_ssl' => 'SMTP jest SSL',
+    'config_smtp_address_from' => 'SMTP e-mail',
+    'config_smtp_address_from_name' => 'SMTP nazwa nadawcy',
+    'config_smtp_noreply' => 'SMTP e-mail odpowiedzi',
+    'config_smtp_password' => 'Hasło SMTP',
+    'a_config_options_updated' => 'Pomyślnie zapisano konfigurację',
+    'register_failure_comm' => 'Nie udało się zarejestrować',
+    'register_failure_header' => 'Niepowodzenie rejestracji',
+    'rem_password_failure_header' => 'Niepowodzenie przypomnienia',
+    'rem_password_check_failure_email' => 'Nie udało się wysłać linku z przypomnieniem hasła',
  ];
 
 ?>

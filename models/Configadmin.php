@@ -11,11 +11,13 @@ class Configadmin extends \yii\db\ActiveRecord
     public $config_keywords;
     public $config_rootemail;
     public $config_foot;
-    public $config_smtp_class;
     public $config_smtp_host;
     public $config_smtp_password;
     public $config_smtp_port;
-    public $config_smtp_encryption;
+    public $config_smtp_is_ssl;
+    public $config_smtp_address_from;
+    public $config_smtp_address_from_name;
+    public $config_smtp_noreply;
 
     public static function tableName()
     {
@@ -25,8 +27,9 @@ class Configadmin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['config_title', 'config_description', 'config_keywords', 'config_rootemail', 'config_foot', 'config_smtp_class',
-                'config_smtp_host', 'config_smtp_password', 'config_smtp_port', 'config_smtp_encryption'],
+            [['config_title', 'config_description', 'config_keywords', 'config_rootemail', 'config_foot',
+                'config_smtp_host', 'config_smtp_password', 'config_smtp_port', 'config_smtp_is_ssl',
+                'config_smtp_address_from', 'config_smtp_address_from_name', 'config_smtp_noreply'],
                 'required'],
             [['config_rootemail'], 'email'],
         ];
@@ -45,15 +48,19 @@ class Configadmin extends \yii\db\ActiveRecord
         Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
 "foot"')->bindParam(':config_value', $this->config_foot)->execute();
         Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
-"smtp_class"')->bindParam(':config_value', $this->config_smtp_class)->execute();
-        Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
 "smtp_host"')->bindParam(':config_value', $this->config_smtp_host)->execute();
         Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
 "smtp_password"')->bindParam(':config_value', $this->config_smtp_password)->execute();
         Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
 "smtp_port"')->bindParam(':config_value', $this->config_smtp_port)->execute();
         Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
-"smtp_encryption"')->bindParam(':config_value', $this->config_smtp_encryption)->execute();
+"smtp_is_ssl"')->bindParam(':config_value', $this->config_smtp_is_ssl)->execute();
+        Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
+"smtp_address_from"')->bindParam(':config_value', $this->config_smtp_address_from)->execute();
+        Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
+"smtp_address_from_name"')->bindParam(':config_value', $this->config_smtp_address_from_name)->execute();
+        Yii::$app->db->createCommand('UPDATE {{%config}} SET config_value = :config_value WHERE config_name =
+"smtp_noreply"')->bindParam(':config_value', $this->config_smtp_noreply)->execute();
     }
 
     public function DataInsert()
@@ -76,9 +83,6 @@ class Configadmin extends \yii\db\ActiveRecord
             if ($QueryDataIs[$c]['config_name'] == 'foot') {
                 $this->config_foot = $QueryDataIs[$c]['config_value'];
             }
-            if ($QueryDataIs[$c]['config_name'] == 'smtp_class') {
-                $this->config_smtp_class = $QueryDataIs[$c]['config_value'];
-            }
             if ($QueryDataIs[$c]['config_name'] == 'smtp_host') {
                 $this->config_smtp_host = $QueryDataIs[$c]['config_value'];
             }
@@ -88,8 +92,17 @@ class Configadmin extends \yii\db\ActiveRecord
             if ($QueryDataIs[$c]['config_name'] == 'smtp_port') {
                 $this->config_smtp_port = $QueryDataIs[$c]['config_value'];
             }
-            if ($QueryDataIs[$c]['config_name'] == 'smtp_encryption') {
-                $this->config_smtp_encryption = $QueryDataIs[$c]['config_value'];
+            if ($QueryDataIs[$c]['config_name'] == 'smtp_is_ssl') {
+                $this->config_smtp_is_ssl = $QueryDataIs[$c]['config_value'];
+            }
+            if ($QueryDataIs[$c]['config_name'] == 'smtp_address_from') {
+                $this->config_smtp_address_from = $QueryDataIs[$c]['config_value'];
+            }
+            if ($QueryDataIs[$c]['config_name'] == 'smtp_address_from_name') {
+                $this->config_smtp_address_from_name = $QueryDataIs[$c]['config_value'];
+            }
+            if ($QueryDataIs[$c]['config_name'] == 'smtp_noreply') {
+                $this->config_smtp_noreply = $QueryDataIs[$c]['config_value'];
             }
         }
 
@@ -117,11 +130,13 @@ class Configadmin extends \yii\db\ActiveRecord
             'config_keywords' => Yii::t('app', 'config_keywords'),
             'config_rootemail' => Yii::t('app', 'config_rootemail'),
             'config_foot' => Yii::t('app', 'config_foot'),
-            'config_smtp_class' => Yii::t('app', 'config_smtp_class'),
             'config_smtp_host' => Yii::t('app', 'config_smtp_host'),
             'config_smtp_password' => Yii::t('app', 'config_smtp_password'),
             'config_smtp_port' => Yii::t('app', 'config_smtp_port'),
-            'config_smtp_encryption' => Yii::t('app', 'config_smtp_encryption'),
+            'config_smtp_is_ssl' => Yii::t('app', 'config_smtp_is_ssl'),
+            'config_smtp_address_from' => Yii::t('app', 'config_smtp_address_from'),
+            'config_smtp_address_from_name' => Yii::t('app', 'config_smtp_address_from_name'),
+            'config_smtp_noreply' => Yii::t('app', 'config_smtp_noreply'),
         ];
     }
 

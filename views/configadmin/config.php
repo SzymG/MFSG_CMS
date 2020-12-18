@@ -28,11 +28,13 @@ if($ConfigUpdated)
         <?= $form->field($model, 'config_keywords'); ?>
         <?= $form->field($model, 'config_rootemail'); ?>
         <?= $form->field($model, 'config_foot'); ?>
-        <?= $form->field($model, 'config_smtp_class'); ?>
         <?= $form->field($model, 'config_smtp_host'); ?>
         <?= $form->field($model, 'config_smtp_password'); ?>
         <?= $form->field($model, 'config_smtp_port'); ?>
-        <?= $form->field($model, 'config_smtp_encryption'); ?>
+        <?= $form->field($model, 'config_smtp_is_ssl')->checkbox(); ?>
+        <?= $form->field($model, 'config_smtp_address_from'); ?>
+        <?= $form->field($model, 'config_smtp_address_from_name'); ?>
+        <?= $form->field($model, 'config_smtp_noreply'); ?>
 
         <div class="form-group">
             <?= Html::submitButton(Yii::t('app', 'a_config_update_button'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

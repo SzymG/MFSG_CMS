@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\helpers\MailHelper;
 use Yii;
 use yii\web\Controller;
 use app\models\User;
@@ -68,21 +69,28 @@ class UserController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->validate())
         {
-            $UserRegisterIp = $_SERVER['REMOTE_ADDR'];
-            Yii::$app->mailer->compose()
-                ->setFrom(array(Yii::$app->params['adminEmail'] => Yii::$app->params['adminName']))
-                ->setTo($model->user_email)
-                ->setSubject(Yii::t('app', 'user_remind_pass_title').Yii::$app->params['pageTitle'])
-                ->setTextBody(
-                    Yii::t('app', 'user_remind_pass_body', [
-                            'page_title' => Yii::$app->params['pageTitle'],
-                            'user_ip' => $UserRegisterIp,
-                            'administrator' => Yii::$app->params['adminName'],
-                            'page_link' => Yii::$app->params['pageUrl'].'remind-password-set/'.$model->user_id.'/'.$model->password_hash1.'/'.$model->password_hash2
-                        ])
-                        )
-                        ->send();
-            return $this->render('rempass-success', ['model' => $model]);
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $success = true;
+
+                $UserRegisterIp = $_SERVER['REMOTE_ADDR'];
+                $address = $model->user_email;
+                $subject = Yii::t('app', 'user_remind_pass_title').Yii::$app->params['pageTitle'];
+                $content = Yii::t('app', 'user_remind_pass_body', [
+                    'page_title' => Yii::$app->params['pageTitle'],
+                    'user_ip' => $UserRegisterIp,
+                    'administrator' => Yii::$app->params['adminName'],
+                    'page_link' => Yii::$app->params['pageUrl'].'remind-password-set/'.$model->user_id.'/'.$model->password_hash1.'/'.$model->password_hash2
+                ]);
+
+                (new MailHelper())->send($address, $subject, $content);
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $success = false;
+                $transaction->rollBack();
+            }
+
+            return $this->render('rempass-success', ['model' => $model, 'success' => $success]);
         }
         else
         {
@@ -99,22 +107,27 @@ class UserController extends Controller {
         $ViewPassChanged = false;
         if($ReturnRemPass)
         {
-            $UserRegisterIp = $_SERVER['REMOTE_ADDR'];
-            Yii::$app->mailer->compose()
-                ->setFrom(array(Yii::$app->params['adminEmail'] => Yii::$app->params['adminName']))
-                ->setTo($model->user_email)
-                ->setSubject(Yii::t('app', 'user_new_password').Yii::$app->params['pageTitle'])
-                ->setTextBody(
-                    Yii::t('app', 'user_new_password_body', [
-                            'page_title' => Yii::$app->params['pageTitle'],
-                            'user_ip' => $UserRegisterIp,
-                            'administrator' => Yii::$app->params['adminName'],
-                            'user_password' => $ReturnRemPass,
-                        ]
-                    ))
-                ->send();
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $ViewPassChanged = true;
 
-            $ViewPassChanged = true;
+                $UserRegisterIp = $_SERVER['REMOTE_ADDR'];
+                $address = $model->user_email;
+                $subject = Yii::t('app', 'user_new_password').Yii::$app->params['pageTitle'];
+                $content = Yii::t('app', 'user_new_password_body', [
+                        'page_title' => Yii::$app->params['pageTitle'],
+                        'user_ip' => $UserRegisterIp,
+                        'administrator' => Yii::$app->params['adminName'],
+                        'user_password' => $ReturnRemPass,
+                    ]
+                );
+
+                (new MailHelper())->send($address, $subject, $content);
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $ViewPassChanged = false;
+                $transaction->rollBack();
+            }
         }
 
         return $this->render('rempass-set', ['model' => $model, 'ViewPassChanged' => $ViewPassChanged]);
@@ -135,24 +148,30 @@ class UserController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->validate())
         {
-            $UserData = $model->RegisterUser();
-            $UserRegisterIp = $_SERVER['REMOTE_ADDR'];
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $success = true;
+                $UserData = $model->RegisterUser();
 
-            Yii::$app->mailer->compose()
-                ->setFrom(array(Yii::$app->params['adminEmail'] => Yii::$app->params['adminName']))
-                ->setTo($model->user_email)
-                ->setSubject(Yii::t('app', 'user_actvate_account').' '.Yii::$app->params['pageTitle'])
-                ->setTextBody(
-                    Yii::t('app', 'user_actvate_account_body', [
-                            'page_title' => Yii::$app->params['pageTitle'],
-                            'user_ip' => $UserRegisterIp,
-                            'administrator' => Yii::$app->params['adminName'],
-                            'page_link' => Yii::$app->params['pageUrl'].'activate/'.$UserData['user_id'].'/'.$UserData['user_key'],
-                        ]
-                    ))
-                ->send();
+                $UserRegisterIp = $_SERVER['REMOTE_ADDR'];
+                $address = $model->user_email;
+                $subject = Yii::t('app', 'user_actvate_account').' '.Yii::$app->params['pageTitle'];
+                $content = Yii::t('app', 'user_actvate_account_body', [
+                        'page_title' => Yii::$app->params['pageTitle'],
+                        'user_ip' => $UserRegisterIp,
+                        'administrator' => Yii::$app->params['adminName'],
+                        'page_link' => Yii::$app->params['pageUrl'].'activate/'.$UserData['user_id'].'/'.$UserData['user_key'],
+                    ]
+                );
 
-            return $this->render('register-success', ['model' => $model]);
+                (new MailHelper())->send($address, $subject, $content);
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $success = false;
+                $transaction->rollBack();
+            }
+
+            return $this->render('register-success', ['model' => $model, 'success' => $success]);
         }
         else
         {
