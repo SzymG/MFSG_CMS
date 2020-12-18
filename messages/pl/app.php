@@ -188,7 +188,6 @@ return [
     'user_activated_ip' =>  'IP aktywacji',
     'user_root' => 'Administrator'
 
- // TODO dodać resztę tłumaczeń
  ];
 
 ?>
