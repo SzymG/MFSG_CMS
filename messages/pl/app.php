@@ -44,7 +44,7 @@ return [
     'a_amenu_config' => 'Konfiguracja',
     'a_amenu_page' => 'Podstrony',
     'a_amenu_events' => 'Wydarzenia',
-    'a_amenu_news' => 'Wiadomości',
+    'a_amenu_news' => 'Aktualności',
     'a_amenu_users' => 'Użytkownicy',
     'a_amenu_password_change' => 'Zmiana hasła',
     'a_amenu_logs' => 'Logi',
@@ -79,7 +79,7 @@ return [
     'log_time' => 'Czas',
     'log_ip' => 'Adres IP',
     'log_browse_logs' => 'Przeglądanie logów',
-    'log_id' => 'ID',
+    'log_id' => 'Id',
     'User' => 'Użytkownik',
     'log_browse_users' => 'Przeglądanie listy użytkowników',
     'log_browse_user_one' => 'Przeglądanie użytkownika',
@@ -127,7 +127,7 @@ return [
     'user_register' => 'Data rejestracji',
     'a_news_header' => 'Aktualności',
     'a_news_add' => 'Dodaj aktualność',
-    'news_id' => 'ID',
+    'news_id' => 'Id',
     'news_title' => 'Tytuł',
     'news_date' => 'Data dodania',
     'news_text' => 'Treść aktualności',
@@ -141,7 +141,7 @@ return [
     'a_add_menu_position' => 'Dodaj pozycję w menu',
     'menu_title' => 'Tytuł',
     'menu_what' => 'Co zawiera',
-    'menu_content_id' => 'ID zawartości',
+    'menu_content_id' => 'Id zawartości',
     'menu_parent_id' => 'Rodzic',
     'a_menu_add' => 'Dodaj',
     'a_menu_main' => 'Strona główna',
@@ -181,7 +181,14 @@ return [
     'comm_yes' =>  'Wymaga logowania',
     'profile_header' =>  'Profil',
     'profile_update_submit' =>  'Aktualizuj profil',
-    // TODO dodać resztę tłumaczeń
+    'user_id' =>  'Id',
+    'user_key' =>  'Klucz użytkownika',
+    'user_active' =>  'Aktywny użytkownik',
+    'user_activated' =>  'Data aktywacji konta',
+    'user_activated_ip' =>  'IP aktywacji',
+    'user_root' => 'Administrator'
+
+ // TODO dodać resztę tłumaczeń
  ];
 
 ?>
