@@ -9,6 +9,8 @@ class EventController extends Controller
 {
     public function actionIndex()
     {
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_events'));
+
         $model = new Event();
         $CountAll = $model->CountAll();
 
@@ -23,6 +25,9 @@ class EventController extends Controller
 
     public function actionShowone($EventUrl,$EventId)
     {
+        $idText = 'ID: '.$EventId;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_event'), $idText);
+
         $model = new Event();
         $IsThatPage = $model->SelectOneEvent($EventId);
 

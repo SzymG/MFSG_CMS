@@ -37,6 +37,7 @@ class UserController extends Controller {
 
             if ($model->load(Yii::$app->request->post()) && $model->validate())
             {
+                Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_login'));
                 $this->goHome();
             }
             else
@@ -52,6 +53,8 @@ class UserController extends Controller {
 
     public function actionLogout()
     {
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_logout'));
+
         $session = Yii::$app->session;
         $session['yii_user_id'] = '';
         $session['yii_user_email'] = '';
@@ -164,6 +167,8 @@ class UserController extends Controller {
         $session = Yii::$app->session;
         if($session['yii_user_id'] != "")
         {
+            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_profile'));
+
             $request = Yii::$app->request;
             $post = $request->post();
             $model = new User(['scenario' => User::SCENARIO_UPDATEPROFILE]);
@@ -175,6 +180,7 @@ class UserController extends Controller {
 
             if ($model->load(Yii::$app->request->post()) && $model->validate())
             {
+                Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_updated_profile'));
                 $model->UpdateProfile();
                 $dataChanged = true;
 
