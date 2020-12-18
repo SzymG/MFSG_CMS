@@ -41,9 +41,9 @@ class ConfigadminController extends Controller
             Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_update_configuration'));
             $model->SaveUserData();
             $ConfigUpdated = true;
-
-            return $this->redirect(['/admin']);
-
+            return $this->render('config', [
+                'model' => $model, 'ConfigUpdated' => $ConfigUpdated
+            ]);
 
         }
         else
