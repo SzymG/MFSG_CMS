@@ -52,7 +52,8 @@ class UseradminController extends Controller
 
     public function actionView($id)
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_user_one'));
+        $idText = 'ID: '.$id;
+        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_user_one'), $idText);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
