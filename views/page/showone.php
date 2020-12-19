@@ -5,5 +5,5 @@ use yii\widgets\ActiveForm;
 $this->title = $model->page_title;
 $this->params['breadcrumbs'][] = $this->title;
 
-echo $model->page_text;
 ?>
+<div class="mx-4"><?php echo $model->page_text ?></div>

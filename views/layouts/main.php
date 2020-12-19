@@ -30,6 +30,16 @@ $session = Yii::$app->session;
     <meta name="keywords" content="<?php echo $ConfigPage['keywords']; ?>" />
     <title><?php echo Yii::t('app', 'a_logo'); ?></title>
     <?php $this->head() ?>
+
+<style>
+    .has-error>.help-block
+    {
+        color:  #cc0000;
+        background-color: #ffe6e6;
+        padding: 5px;
+        padding-left: 15px;
+    }
+</style>
 </head>
 <script src="<?php echo Yii::$app->params['pageUrl']; ?>library/jquery-3.5.1.min.js"
         type="text/javascript"></script>
