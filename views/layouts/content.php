@@ -3,13 +3,13 @@
 
 use yii\bootstrap4\Breadcrumbs;
 ?>
-<div class="content-wrapper">
+<div class="content-wrapper p-4">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">
+                    <h1 class="m-0 text-dark font-weight-bold">
                         <?php
                         if (!is_null($this->title)) {
                             echo \yii\helpers\Html::encode($this->title);
