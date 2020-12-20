@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="eventadmin-view">
     <p>
-        <?= Html::a(Yii::t('app', 'a_event_edit'), ['update', 'id' => $model->event_id], ['class' =>'btn btnprimary']) ?>
+        <?= Html::a(Yii::t('app', 'a_event_edit'), ['update', 'id' => $model->event_id], ['class' =>'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'a_event_delete'), ['delete', 'id' => $model->event_id], [
             'class' =>'btn btn-danger',
             'data' => [

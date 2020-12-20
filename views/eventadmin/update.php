@@ -16,11 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <script>
     $('#eventadmin-event_date_start').datetimepicker({
-        timeFormat: "HH:mm:ss",
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: false,
+        timeFormat: "HH:mm",
         dateFormat: "yy-mm-dd"
     });
     $('#eventadmin-event_date_end').datetimepicker({
-        timeFormat: "HH:mm:ss",
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: false,
+        timeFormat: "HH:mm",
         dateFormat: "yy-mm-dd"
     });
 
