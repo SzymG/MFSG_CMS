@@ -62,14 +62,12 @@ class User extends Model {
             [['user_password2'], 'compare', 'compareAttribute' => 'user_password3', 'on' =>
                 self::SCENARIO_CHANGEPASSWORD],
             ['user_password', 'validateUserPassword', 'skipOnError' => false, 'on' => self::SCENARIO_CHANGEPASSWORD],
-//            [['user', 'url'], 'defaultScheme' => 'http', 'on' => self::SCENARIO_UPDATEPROFILE], TODO po co ten walidator?
             [['user_email', 'user_password', 'user_password2'], 'required', 'on' => self::SCENARIO_REGISTER],
             ['user_email', 'email', 'on' => self::SCENARIO_REGISTER],
             [['user_password', 'user_password2'], 'string', 'length' => [8, 30], 'on' => self::SCENARIO_REGISTER],
             [['user_password'], 'match', 'pattern' => '/^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', 'message' =>
                 Yii::t('app', 'new_password_need_to_have'), 'on' => self::SCENARIO_REGISTER],
             ['user_password', 'compare', 'compareAttribute' => 'user_password2', 'on' => self::SCENARIO_REGISTER],
-//            ['url', 'defaultScheme' => 'http', 'on' => self::SCENARIO_REGISTER], TODO po co ten walidator?
             ['user_email', 'validateUserIsEmail', 'skipOnError' => false, 'on' => self::SCENARIO_REGISTER],
             [['user_captcha', 'user_email'], 'required', 'on' => self::SCENARIO_REMIND],
             ['user_email', 'email', 'on' => self::SCENARIO_REMIND],

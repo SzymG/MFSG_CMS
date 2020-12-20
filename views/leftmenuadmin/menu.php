@@ -6,8 +6,6 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('app', 'a_left_menu');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'a_admin'), 'url' => ['/admin/index']];
 $this->params['breadcrumbs'][] = $this->title;
-
-// TODO tu mogłem coś pomylić
 ?>
 
 
