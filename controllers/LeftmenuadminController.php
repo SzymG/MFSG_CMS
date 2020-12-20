@@ -112,7 +112,7 @@ class LeftmenuadminController extends Controller
             ->all();
 
         $MainPages = Leftmenuadmin::find()
-            ->where(['menu_parent_id' => 0])
+            ->where(['menu_what' => 'none'])
             ->asArray()
             ->orderBy('menu_poz')
             ->all();

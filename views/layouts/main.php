@@ -28,7 +28,14 @@ $session = Yii::$app->session;
     <?php $this->registerCsrfMetaTags() ?>
     <meta name="description" content="<?php echo $ConfigPage['description']; ?>" />
     <meta name="keywords" content="<?php echo $ConfigPage['keywords']; ?>" />
-    <title><?php echo Yii::t('app', 'a_logo'); ?></title>
+    <!--<title><?php echo Yii::t('app', 'a_logo'); ?></title>-->
+    <?php
+    if (!is_null($this->title)) {
+        echo '<title>'.\yii\helpers\Html::encode($this->title).'</title>';
+    } else {
+        echo '<title>'.$ConfigPage['title'].'</title>';
+    }
+    ?>
     <?php $this->head() ?>
 
 <style>

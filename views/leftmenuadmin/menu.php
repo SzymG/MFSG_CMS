@@ -24,12 +24,7 @@ $form = ActiveForm::begin([
 ]);
 
 $ItemContentList2['main'] = Yii::t('app', 'a_menu_main');
-$ItemContentList2['none'] = Yii::t('app', 'a_menu_main');
-$ItemContentList2['login'] = Yii::t('app', 'a_is_only_for_authorized');
-$ItemContentList2['logout'] = Yii::t('app', 'a_menu_logout');
-$ItemContentList2['profil'] = Yii::t('app', 'a_menu_profil');
-$ItemContentList2['register'] = Yii::t('app', 'a_menu_register');
-$ItemContentList2['password'] = Yii::t('app', 'a_menu_pass_reminder');
+$ItemContentList2['none'] = '';
 $ItemContentList2['pageone'] = Yii::t('app', 'a_menu_page_one');
 $ItemContentList2['news'] = Yii::t('app', 'a_menu_news');
 $ItemContentList2['newsone'] = Yii::t('app', 'a_menu_news_one');
@@ -129,11 +124,7 @@ if($WasAdded)
 <?php
 
 $ItemContentList['main'] = Yii::t('app', 'a_menu_main');
-$ItemContentList['login'] = Yii::t('app', 'a_is_only_for_authorized');
-$ItemContentList['logout'] = Yii::t('app', 'a_menu_logout');
-$ItemContentList['profil'] = Yii::t('app', 'a_menu_profil');
-$ItemContentList['register'] = Yii::t('app', 'a_menu_register');
-$ItemContentList['password'] = Yii::t('app', 'a_menu_pass_reminder');
+$ItemContentList['none'] = "Rodzic";
 $ItemContentList['pageone'] = Yii::t('app', 'a_menu_page_one');
 $ItemContentList['news'] = Yii::t('app', 'a_menu_news');
 $ItemContentList['newsone'] = Yii::t('app', 'a_menu_news_one');
@@ -179,77 +170,27 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
             {
                 var newOptions = {"<?php echo Yii::t('app', 'a_menu_main'); ?>": "main"};
                 var $el = $("#leftmenuadmin-menu_content_id");
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 $el.empty();
                 $.each(newOptions, function(key,value)
                 {
                     $el.append($("<option></option>").attr("value", value).text(key));
                 });
             }
-            else if($(this).val() == "login")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_is_only_for_authorized'); ?>": "login"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
-            }
-            else if($(this).val() == "logout")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_logout'); ?>": "logout"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
-            }
-            else if($(this).val() == "changepassword")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_change_password'); ?>": "changepassword"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
-            }
-            else if($(this).val() == "profil")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_profil'); ?>": "profil"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
-            }
-            else if($(this).val() == "register")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_register'); ?>": "register"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
-            }
-            else if($(this).val() == "password")
-            {
-                var newOptions = {"<?php echo Yii::t('app', 'a_menu_pass_reminder'); ?>": "password"};
-                var $el = $("#leftmenuadmin-menu_content_id");
-                $el.empty();
-                $.each(newOptions, function(key,value)
-                {
-                    $el.append($("<option></option>").attr("value", value).text(key));
-                });
-            }
+           else if($(this).val() == "none")
+           {
+               var $el = $("#leftmenuadmin-menu_content_id");
+               $el.empty();
+               $el.append($("<option></option>").attr("value", 0).text("Brak"));
+               $("#leftmenuadmin-menu_parent_id").val(0).change();
+               $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", true );
+           }
             else if($(this).val() == "page")
             {
                 var newOptions = {"<?php echo Yii::t('app', 'a_menu_page'); ?>": "page"};
                 var $el = $("#leftmenuadmin-menu_content_id");
                 $el.empty();
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 $.each(newOptions, function(key,value)
                 {
                     $el.append($("<option></option>").attr("value", value).text(key));
@@ -258,6 +199,7 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
             else if($(this).val() == "pageone")
             {
                 $("#leftmenuadmin-menu_content_id").empty();
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 <?php
                 empty($TableReady);
                 $TableReady = array();
@@ -274,6 +216,7 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
             {
                 var newOptions = {"<?php echo Yii::t('app', 'a_menu_news'); ?>": "news"};
                 var $el = $("#leftmenuadmin-menu_content_id");
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 $el.empty();
                 $.each(newOptions, function(key,value)
                 {
@@ -283,6 +226,7 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
             else if($(this).val() == "newsone")
             {
                 $("#leftmenuadmin-menu_content_id").empty();
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 <?php
                 empty($TableReady);
                 $TableReady = array();
@@ -300,6 +244,7 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
                 var newOptions = {"<?php echo Yii::t('app', 'a_menu_events'); ?>": "event"};
                 var $el = $("#leftmenuadmin-menu_content_id");
                 $el.empty();
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 $.each(newOptions, function(key,value)
                 {
                     $el.append($("<option></option>").attr("value", value).text(key));
@@ -308,6 +253,7 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
             else if($(this).val() == "eventone")
             {
                 $("#leftmenuadmin-menu_content_id").empty();
+                $("#leftmenuadmin-menu_parent_id option:not(:selected)").prop( "disabled", false );
                 <?php
                 empty($EventsTable);
                 $TableReady = array();
@@ -322,5 +268,5 @@ echo $form->field($model, 'is_only_for_authorized')->dropDownList($ItemLoginList
             }
        });
    })
-       .change();
+
 </script>
