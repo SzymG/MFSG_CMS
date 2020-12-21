@@ -41,7 +41,7 @@ class m201123_210151_create extends Migration
 
         $this->execute('CREATE TABLE `config` (
              `config_id` int(11) NOT NULL,
-             `config_name` varchar(15) NOT NULL,
+             `config_name` varchar(55) NOT NULL,
              `config_value` varchar(255) NOT NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
 
