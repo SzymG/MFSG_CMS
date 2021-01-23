@@ -31,7 +31,7 @@ class Error404adminController extends Controller
 
     public function actionIndex()
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_user_watched_error404'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_user_watched_error404'));
         $dataProvider = new ActiveDataProvider([
             'query' => Error404::find(),
             'sort'=> ['defaultOrder' => ['error_id'=>SORT_DESC]]

@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\assets\AppAsset;
 
 $this->title = Yii::t('app', 'user_change_password');
 $this->params['breadcrumbs'][] = $this->title;

@@ -123,6 +123,7 @@ return [
     'user_new_password' => 'Nowe hasło ',
     'a_users_delete_header' => 'Usuń użytkownika',
     'a_delete_shure' => 'Czy na pewno chcesz usunąć?',
+    'a_delete_shure_menu' => 'Czy na pewno chcesz usunąć tę pozycję? Jeśli posiada ona podpozycje, zostaną one także usunięte',
     'user_registered_ip' => 'IP rejestracji',
     'user_register' => 'Data rejestracji',
     'a_news_header' => 'Aktualności',
@@ -199,6 +200,7 @@ return [
     'register_failure_header' => 'Niepowodzenie rejestracji',
     'rem_password_failure_header' => 'Niepowodzenie przypomnienia',
     'rem_password_check_failure_email' => 'Nie udało się wysłać linku z przypomnieniem hasła',
+    'password_dont_match' => 'E-mail lub hasło niepoprawne',
  ];
 
 ?>

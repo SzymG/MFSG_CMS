@@ -4,6 +4,7 @@ use app\models\Leftmenuadmin;
 use yii\helpers\Url;
 
 $session = Yii::$app->session;
+$ConfigPage = Yii::$app->OtherFunctionsComponent->GetConfigData();
 
 ?>
 
@@ -12,7 +13,9 @@ $session = Yii::$app->session;
     <a href="<?= Url::to(['/'])?>" class="brand-link">
         <img src="<?=$assetDir?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">MFSG_CMS</span>
+        <span class="brand-text font-weight-light">
+            <?php echo $ConfigPage['title']; ?>
+        </span>
     </a>
 
     <!-- Sidebar -->

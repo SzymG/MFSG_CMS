@@ -46,7 +46,7 @@ class NewsadminController extends Controller
     public function actionIndex()
     {
 
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_news'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_news'));
 
         $dataProvider = new ActiveDataProvider([
             'query' => Newsadmin::find(),
@@ -60,7 +60,7 @@ class NewsadminController extends Controller
     public function actionView($id)
     {
         $idText = 'ID: '.$id;
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_entry_news'), $idText);
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_entry_news'), $idText);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -73,13 +73,22 @@ class NewsadminController extends Controller
         $model->news_date = date('Y-m-d H:i:s');
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->file_photo = UploadedFile::getInstance($model, 'news_photo_url');
-            $nameSet = UploadHelper::generatePath($model->file_photo->extension);
-            $model->news_photo_url = $nameSet['name'];
-            if($model->save() && $model->upload($nameSet)) {
-                $idText = 'ID: '.$model->news_id;
-                Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_news'), $idText);
-                return $this->redirect(['view', 'id' => $model->news_id]);
+            if(!empty(UploadedFile::getInstance($model, 'news_photo_url'))) {
+                $model->file_photo = UploadedFile::getInstance($model, 'news_photo_url');
+                $nameSet = UploadHelper::generatePath($model->file_photo->extension);
+                $model->news_photo_url = $nameSet['name'];
+                if($model->save() && $model->upload($nameSet)) {
+                    $idText = 'ID: '.$model->news_id;
+                    Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_news'), $idText);
+                    return $this->redirect(['view', 'id' => $model->news_id]);
+                }
+            }
+            else {
+                if($model->save()) {
+                    $idText = 'ID: '.$model->news_id;
+                    Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_news'), $idText);
+                    return $this->redirect(['view', 'id' => $model->news_id]);
+                }
             }
         } else {
             return $this->render('create', [

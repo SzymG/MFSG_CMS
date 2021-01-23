@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use app\assets\AppAsset;
 ?>
 <div class="newsadmin-form">
     <?php $form = ActiveForm::begin([

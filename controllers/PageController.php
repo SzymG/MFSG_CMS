@@ -19,7 +19,7 @@ class PageController extends Controller {
 
     public function actionShowone($PageUrl,$PageId) {
         $idText = 'ID: '.$PageId;
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), $idText);
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), $idText);
 
         $model = new Page();
         $IsThatPage = $model->SelectOnePage($PageId);
@@ -40,7 +40,7 @@ class PageController extends Controller {
         $IsThatPage = $model->SelectHome();
         if($IsThatPage)
         {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), "Homepage");
+//            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), "Homepage");
 
             return $this->render('showhome', ['model' => $model]);
         }

@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function actionIndex()
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_news'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_news'));
 
         $model = new News();
         $CountAll = $model->CountAll();
@@ -23,7 +23,7 @@ class NewsController extends Controller
     public function actionShowone($NewsUrl, $NewsId)
     {
         $idText = 'ID: '.$NewsId;
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_entry_news'), $idText);
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_entry_news'), $idText);
 
         $model = new News();
 

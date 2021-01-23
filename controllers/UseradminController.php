@@ -40,7 +40,7 @@ class UseradminController extends Controller
 
     public function actionIndex()
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_users'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_users'));
         $dataProvider = new ActiveDataProvider([
             'query' => Useradmin::find(),
         ]);
@@ -53,7 +53,7 @@ class UseradminController extends Controller
     public function actionView($id)
     {
         $idText = 'ID: '.$id;
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_user_one'), $idText);
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_user_one'), $idText);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

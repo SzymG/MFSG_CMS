@@ -31,7 +31,7 @@ class LogadminController extends Controller
 
     public function actionIndex()
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_logs'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_logs'));
         $dataProvider = new ActiveDataProvider([
             'query' => Logadmin::find(),
             'sort'=> ['defaultOrder' => ['log_id'=>SORT_DESC]]

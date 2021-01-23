@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\assets\AppAsset;
 
 $this->title = Yii::t('app', 'a_left_menu');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'a_admin'), 'url' => ['/admin/index']];
@@ -56,7 +57,7 @@ style="width: 90px;">';
 <div class="col-md-2">'.$GoTo.'</div>
 <div class="col-md-2">'.Html::a(Yii::t('app', 'com_delete_button'),
 ['/leftmenuadmin/index?delete='.$MainAllPages[$m]['menu_id']], ['data' => ['confirm' => Yii::t('app',
-'a_delete_shure')]]).'</div>
+'a_delete_shure_menu')]]).'</div>
 </div>';
     $HowManyElementsSub = count($MainSubPages);
     $IsSubOdThisMenu = 0;

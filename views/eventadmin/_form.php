@@ -5,6 +5,7 @@ use yii\helpers\FileHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use app\assets\AppAsset;
 ?>
 
 <div class="eventadmin-form">

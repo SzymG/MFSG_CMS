@@ -46,7 +46,7 @@ class EventadminController extends Controller
 
     public function actionIndex()
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_events'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_events'));
         $dataProvider = new ActiveDataProvider([
             'query' => Eventadmin::find(),
         ]);
@@ -59,7 +59,7 @@ class EventadminController extends Controller
     public function actionView($id)
     {
         $idText = 'ID: '.$id;
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_event'), $idText);
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_event'), $idText);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -70,13 +70,22 @@ class EventadminController extends Controller
         $model->event_date = date('Y-m-d H:i:s');
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->file_photo = UploadedFile::getInstance($model, 'event_photo_url');
-            $nameSet = UploadHelper::generatePath($model->file_photo->extension);
-            $model->event_photo_url = $nameSet['name'];
-            if($model->save() && $model->upload($nameSet)) {
-                $idText = 'ID: '.$model->event_id;
-                Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_event'), $idText);
-                return $this->redirect(['view', 'id' => $model->event_id]);
+            if(!empty(UploadedFile::getInstance($model, 'event_photo_url'))) {
+                $model->file_photo = UploadedFile::getInstance($model, 'event_photo_url');
+                $nameSet = UploadHelper::generatePath($model->file_photo->extension);
+                $model->event_photo_url = $nameSet['name'];
+                if($model->save() && $model->upload($nameSet)) {
+                    $idText = 'ID: ' . $model->event_id;
+                    Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_event'), $idText);
+                    return $this->redirect(['view', 'id' => $model->event_id]);
+                }
+            }
+            else {
+                if($model->save()) {
+                    $idText = 'ID: ' . $model->event_id;
+                    Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_create_event'), $idText);
+                    return $this->redirect(['view', 'id' => $model->event_id]);
+                }
             }
         } else {
             return $this->render('create', [

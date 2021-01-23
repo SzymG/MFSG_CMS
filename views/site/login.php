@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use app\assets\AppAsset;
 ?>
 <div class="card">
     <div class="card-body login-card-body">

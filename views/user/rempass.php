@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\captcha\Captcha;
+use app\assets\AppAsset;
 
 $this->title = Yii::t('app', 'rem_password_header');
 $this->params['breadcrumbs'][] = $this->title;

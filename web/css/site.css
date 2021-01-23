@@ -60,3 +60,10 @@
     background: #cacaca;
     font-weight: bold;
 }
+
+
+.required label.control-label:after {
+
+    content:" * ";
+}
+

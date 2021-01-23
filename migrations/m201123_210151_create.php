@@ -12,7 +12,7 @@ class m201123_210151_create extends Migration
          `event_text` text NOT NULL,
          `event_author` varchar(55) NOT NULL,
          `event_date_start` datetime NOT NULL,
-         `event_date_end` datetime NOT NULL,
+         `event_date_end` datetime,
          `event_photo_url` varchar(65),
          `is_only_for_authorized` TINYINT(1) NOT NULL,
          `event_url` varchar(65) NOT NULL
@@ -30,7 +30,7 @@ class m201123_210151_create extends Migration
              `news_date` datetime NOT NULL,
              `news_url` varchar(150) NOT NULL,
              `is_only_for_authorized` TINYINT(1) NOT NULL,
-             `news_photo_url` varchar(150) NOT NULL
+             `news_photo_url` varchar(150)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
 
         $this->execute('ALTER TABLE `news`

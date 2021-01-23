@@ -186,7 +186,7 @@ class UserController extends Controller {
         $session = Yii::$app->session;
         if($session['yii_user_id'] != "")
         {
-            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_profile'));
+//            Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_profile'));
 
             $request = Yii::$app->request;
             $post = $request->post();

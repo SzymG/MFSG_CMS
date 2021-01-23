@@ -40,7 +40,7 @@ class PageadminController extends Controller
 
     public function actionIndex()
     {
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_page'));
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_page'));
         $dataProvider = new ActiveDataProvider([
             'query' => Pageadmin::find(),
         ]);
@@ -53,7 +53,7 @@ class PageadminController extends Controller
     public function actionView($id)
     {
         $idText = 'ID: '.$id;
-        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), $idText);
+//        Yii::$app->OtherFunctionsComponent->WriteLog(Yii::t('app', 'log_browse_one_page'), $idText);
 
         return $this->render('view', [
             'model' => $this->findModel($id),

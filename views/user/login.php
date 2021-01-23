@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\assets\AppAsset;
 
 $this->title = Yii::t('app', 'login_header');
 $this->params['breadcrumbs'][] = $this->title;
