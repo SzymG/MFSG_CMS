@@ -10,4 +10,4 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if(!empty($model->news_photo_url)): ?>
     <?= Html::img(Url::base().'/storage/index?f='.$model->news_photo_url, ['id' => 'current-image', 'style' => "width: 30%;", 'class' => 'mx-4 mb-2 float-left']); ?>
 <?php endif; ?>
-<div class="mx-4" ><?php echo  $model->news_text ?></div>
+<div class="mx-4" ><?php echo \yii\helpers\HtmlPurifier::process($model->news_text)  ?></div>

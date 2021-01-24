@@ -14,4 +14,4 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php endif; ?>
 <div class="mb-2"><b>Rozpoczęcie: </b><?php echo $model->event_date_start ?><br><b>Zakończenie: </b><?php echo $model->event_date_end ?></div>
 
-<div class="mx-4" ><?php echo $model->event_text ?></div>
+<div class="mx-4" ><?php echo \yii\helpers\HtmlPurifier::process($model->event_text) ?></div>

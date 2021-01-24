@@ -13,8 +13,8 @@ echo LinkPager::widget([
 echo '<h1>'.Yii::t('app', 'a_title_pages').'</h1>';
 for($Pages=0;$Pages<count($SelectPages);$Pages++)
 {
-    echo '<h2>'.$SelectPages[$Pages]['page_title'].'</h2>';
-    echo '<p>'.substr(strip_tags($SelectPages[$Pages]['page_text']),0,350).'... '.
+    echo '<h2>'.\yii\helpers\HtmlPurifier::process($SelectPages[$Pages]['page_title']).'</h2>';
+    echo '<p>'.\yii\helpers\HtmlPurifier::process(substr(strip_tags($SelectPages[$Pages]['page_text']),0,350).'... ').
         Html::a('<nobr>'.Yii::t('app', 'read_more').'</nobr>',
             ['/page/'.$SelectPages[$Pages]['page_url'].'/'.$SelectPages[$Pages]['page_id']]).
         '<p>';
